@@ -349,7 +349,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
 
 <!-- 전체 콘텐츠 시작 { -->
-<div id="wrapper" class="<?php echo implode(' ', $wrapper_class); ?>">
+<div id="wrapper" class="<?php echo !empty($wrapper_class) ? implode(' ', $wrapper_class) : ''; ?>">
 	<?php include_once(G5_SHOP_SKIN_PATH.'/boxcategory.skin.php'); // 상품분류 ?>
     <div id="container_wr">
 		<nav class="tabmenu">
