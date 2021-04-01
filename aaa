@@ -1,0 +1,19 @@
+ select
+		b.it_id,
+		b.ca_id,
+		b.ca_id2,
+		b.ca_id3,
+		b.it_notax,
+		b.it_weight,
+		b.it_cust_price,
+		b.it_useEvent,
+		b.it_use,
+		b.it_eventStartDate,
+		b.it_eventEndDate
+	   from g5_shop_item b 
+	  where b.it_useEvent = 1 
+
+time : 1617262621
+1597830360
+MD40950026 Start!
+MD40950026 End!

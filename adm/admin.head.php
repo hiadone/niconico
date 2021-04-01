@@ -204,7 +204,7 @@ jQuery(function($){
 
         <h1 id="container_title"><?php echo $g5['title'] ?>
 		<?php
-		if(strpos($_SERVER[REQUEST_URI],"orderlist.php")) { 
+		if(strpos($_SERVER['REQUEST_URI'],"orderlist.php")) { 
 		?>
 		<ul style="font-size:13px;">
 		※ 주문내역 출력은 <a href="/adm/shop_admin/orderprint.php"><font color="red">[주문내역출력]</font></a> 메뉴를 이용하시기 바랍니다.
