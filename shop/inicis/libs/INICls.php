@@ -16,49 +16,49 @@ require_once ( "INIXml.php" );
 extract($_POST);
 extract($_GET);
 switch ($paymethod) {
-    case(Card):    // 신용카드
+    case('Card');    // 신용카드
         $pgid = "CARD";
         break;
-    case(Account):   // 은행 계좌 이체
+    case('Account');   // 은행 계좌 이체
         $pgid = "ACCT";
         break;
-    case(DirectBank): // 실시간 계좌 이체
+    case('DirectBank'); // 실시간 계좌 이체
         $pgid = "DBNK";
         break;
-    case(OCBPoint):  // OCB
+    case('OCBPoint');  // OCB
         $pgid = "OCBP";
         break;
-    case(VCard):    // ISP 결제
+    case('VCard');    // ISP 결제
         $pgid = "ISP_";
         break;
-    case(HPP):     // 휴대폰 결제
+    case('HPP');     // 휴대폰 결제
         $pgid = "HPP_";
         break;
-    case(ArsBill):   // 700 전화결제
+    case('ArsBill');   // 700 전화결제
         $pgid = "ARSB";
         break;
-    case(PhoneBill):  // PhoneBill 결제(받는 전화)
+    case('PhoneBill');  // PhoneBill 결제(받는 전화)
         $pgid = "PHNB";
         break;
-    case(Ars1588Bill):// 1588 전화결제
+    case('Ars1588Bill');// 1588 전화결제
         $pgid = "1588";
         break;
-    case(VBank):    // 가상계좌 이체
+    case('VBank');    // 가상계좌 이체
         $pgid = "VBNK";
         break;
-    case(Culture):   // 문화상품권 결제
+    case('Culture');   // 문화상품권 결제
         $pgid = "CULT";
         break;
-    case(CMS):     // CMS 결제
+    case('CMS');     // CMS 결제
         $pgid = "CMS_";
         break;
-    case(AUTH):    // 신용카드 유효성 검사
+    case('AUTH');    // 신용카드 유효성 검사
         $pgid = "AUTH";
         break;
-    case(INIcard):   // 네티머니 결제
+    case('INIcard');   // 네티머니 결제
         $pgid = "INIC";
         break;
-    case(MDX):     // 몬덱스카드
+    case('MDX');     // 몬덱스카드
         $pgid = "MDX_";
         break;
     default:         // 상기 지불수단 외 추가되는 지불수단의 경우 기본으로 paymethod가 4자리로 넘어온다.
