@@ -1,0 +1,12 @@
+[#{shop_name}]
+
+#{order_name}님의 주문하신 상품이 입금대기 중에 있습니다. (야옹)
+
+□주문번호 : #{orderNo}
+□결제금액 : #{settlePrice}원
+□입금계좌 : #{bankaccount}
+
+감사합니다♡
+
+▷[#{shop_name}] 놀러가기 : #{shortcut_link}
+▷[#{shop_name}] 고객센터 : #{cs_phone}

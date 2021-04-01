@@ -1,0 +1,370 @@
+@charset "utf-8";
+
+/* aside:gnb */
+#gnb {border-bottom: 1px solid #ddd;}
+
+/* 내용관리 */
+#ctt {min-height:600px; margin:10px 0;background:#fff}
+.ctt_admin {position:absolute; right:0; top:0;text-align:right}
+#ctt header h1 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#ctt_con {padding:10px 0;line-height:1.6em}
+#ctt_con img{max-width:100%;height:auto}
+.ctt_img {text-align:center}
+
+
+
+/* 구매대행 안내 */
+.ctt_service .process {
+	margin-bottom:50px;
+	padding:20px 0 10px;
+	text-align:center;
+}
+
+.ctt_service .process li {
+	position:relative;
+	display:inline-block;
+	padding-left:60px;
+}
+.ctt_service .process li img {
+	width:157px;
+	height:157px;
+	overflow:hidden;
+	padding:5px;
+	border-radius:157px;
+	border:3px solid #eee;
+}
+.ctt_service .process li:first-child {
+	margin-left:0;
+}
+.ctt_service .process li:after {
+	content:"→";
+	display:block;
+	position:absolute;
+	left:15px;
+	top:calc(50% - 10px);
+	font-weight:bold;
+	font-size:2rem;
+}
+.ctt_service .process li:first-child:after {
+	display:none;
+}
+
+.ctt_service p {
+	margin:40px 0;
+	font-size:1.1em;
+	line-height:1.8;
+	color:#555;
+}
+.ctt_service p strong {
+	color:#d80e0e;
+}
+.ctt_service p + ul {
+    margin-top:-30px;
+    padding:20px;
+    color:#666;
+    border:2px solid #ddd;
+}
+.ctt_service li {
+    position:relative;
+	box-sizing:border-box;
+	margin:3px 0;
+	padding-left:10px;
+	font-size: 100%;
+}
+.ctt_service li:after {
+    content:"- ";
+	display:inline-block;
+	position:absolute;
+	top:1px;
+	left:0;
+}
+
+
+
+/* 관세 */
+.ctt_customs div p:first-child {
+	margin-top:0;
+}
+.ctt_customs h5 {
+	position:relative;
+	box-sizing:border-box;
+	margin:50px 0 10px;
+	padding-top:50px;
+	padding-left:15px;
+	font-size: 1.3em;
+    color:#19862b;
+	border-top:1px dashed #ccc;
+}
+.ctt_customs h5:after {
+    content:"";
+	display:inline-block;
+	position:absolute;
+	top:57px;
+	left:0;
+	width:7px;
+	height:7px;
+	background:#19862b;
+}
+.ctt_customs h5 + p {
+	margin-top:0;
+}
+.ctt_customs p {
+	margin:40px 0;
+	font-size:1.1em;
+	line-height:1.8;
+	color:#555;
+	text-align:justify;
+}
+.ctt_customs p strong {
+	color:#d80e0e;
+}
+.ctt_customs #ctt_con div {
+    margin-top:15px;
+	padding:20px;
+    color:#666;
+	text-align:center;
+    border:1px solid #19862b;
+}
+.ctt_customs #ctt_con div p {
+    margin:0;
+	text-align:center;
+	font-size:1.25em;
+	font-weight:500;
+	color: #0252ca;
+}
+.ctt_customs #ctt_con div p.smail {
+    margin:0;
+	font-size:100%;
+	font-weight:400;
+	color: #333;
+}
+.ctt_customs li {
+    position:relative;
+	box-sizing:border-box;
+	margin-bottom:10px;
+	padding-left:10px;
+	line-height:1.6;
+	font-size:1.1em;
+	color: #555;
+}
+.ctt_customs li:after {
+    content:"- ";
+	display:inline-block;
+	position:absolute;
+	top:1px;
+	left:0;
+}
+
+.ctt_customs p + table {
+	margin-top:-20px;
+}
+#ctt table {
+	width: 100%;	
+    margin: 10px auto 0;	
+	font-size:1.05em;
+	border-spacing:0px;
+	border-top: 1px solid #555;
+}
+#ctt caption {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	color: #fff;
+}
+#ctt th,
+#ctt td {
+	height:40px;
+	text-align: center;
+	border-color: #aaa;
+}
+
+#ctt tr td:nth-child(odd) {
+	background: #f6f6f6;
+}
+#ctt thead th {
+	border-bottom:1px solid #555;
+}
+
+.border_l {
+	border-left: 1px solid #aaa;
+}
+
+.border_r {
+	border-right: 1px solid #aaa;
+}
+
+.border_b {
+	border-bottom: 1px solid #aaa;
+}
+
+
+
+/* 회원혜택 */
+.ctt_rating td span {
+	display:inline-block;
+	min-width:50px;
+	font-size:10px;
+	color:#fff;	
+	border-radius:5px;
+	text-shadow:0 0 2px #000;
+}
+.ctt_rating span.s {
+	background:#888;	
+}
+.ctt_rating span.g {
+	background:#f1a803;
+}
+.ctt_rating span.v {
+	background:#bf2525;
+}
+.ctt_rating span.vv {
+	background:#2586bf;
+}
+
+.ctt_rating ul {
+	margin-top:30px;
+}
+
+.ctt_rating li {
+    position:relative;
+	box-sizing:border-box;
+	margin:3px 0;
+	padding-left:10px;
+	font-size: 100%;
+}
+.ctt_rating li:after {
+    content:"- ";
+	display:inline-block;
+	position:absolute;
+	top:1px;
+	left:0;
+}
+
+
+
+/* 배송비 안내 */
+.ctt_delivery img {
+	margin:20px 0 30px;
+}
+
+
+
+/* 관세 */
+.ctt_tax h4 {
+	box-sizing:border-box;
+	margin:0 0 10px;
+	font-size: 1.3em;
+    color:#333;
+}
+.ctt_tax #ctt_con div {
+    margin-top:10px;
+    color:#666;
+	text-align:center;
+}
+.ctt_tax div.bg,
+.ctt_tax #ctt_con div.bg {
+	box-sizing:border-box;
+	padding:20px;
+	text-align:left;
+	border:0;
+	background:#f4f4f4;
+}
+.ctt_tax #ctt_con div p {
+    margin:0;
+	line-height:1.6;
+}
+.ctt_tax h5 {
+	position:relative;
+	box-sizing:border-box;
+	margin:40px 0 10px;
+	padding-top:40px;
+	padding-left:15px;
+	font-size: 1.3em;
+    color:#19862b;
+	border-top:1px dashed #ccc;
+}
+.ctt_tax h5:after {
+    content:"";
+	display:inline-block;
+	position:absolute;
+	top:47px;
+	left:0;
+	width:7px;
+	height:7px;
+	background:#19862b;
+}
+.ctt_tax h6 {
+	margin:30px 0 10px;
+	font-size: 1.1em;
+	color:#333;
+	text-decoration:underline;
+}
+.ctt_tax h6:first-child {
+	margin-top:0;
+}
+.ctt_tax p {
+	line-height:1.8;
+	text-align:justify;
+}
+
+.ctt_tax #ctt_con div.text {	
+	margin-top:50px;
+	padding:20px;
+	line-height:1.6;
+	font-size:1.1em;
+	color:#d80e0e;
+	font-weight:500;
+	border:1px solid #ddd;
+}
+
+
+
+
+.ctt_company #ctt_con {		
+	margin-top:40px;
+	margin-bottom:70px;
+	padding:6.5rem 10px 5rem;
+	color:#fff;
+	font-size:3.4rem;	
+	text-align:center;
+	background:url("/img/sub/imgCompany.jpg") no-repeat;
+	background-size:cover;
+}
+
+.ctt_company #ctt_con h2 {
+	font-weight:300;
+	font-size:1.8rem;
+	line-height:100%;
+}
+.ctt_company #ctt_con h3 {
+	position:relative;
+	padding-bottom: 70px;
+	font-weight:500;
+	letter-spacing:-0.05em;
+}
+.ctt_company #ctt_con h3:after {
+	content:"";
+	display:block;
+	position:absolute;
+	bottom:0;
+	left:50%;
+	width:1px;
+	height: 4rem;
+	background:rgba(255,255,255,.5);
+}
+.ctt_company #ctt_con p {
+	display:inline-block;
+	width:90%;
+	margin:0 auto;
+	padding:2.5rem 10px;
+	font-size:1.4rem;
+	line-height:1.7;
+	border:5px solid rgba(255,255,255,.5);
+}
+.ctt_company #ctt_con p strong {
+	display:block;
+	font-size:1.7rem;
+    color: #61f379;
+	line-height:2;
+}

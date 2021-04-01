@@ -1,0 +1,10 @@
+[#{shop_name}]
+
+#{order_name}님의 소중한 주문이 접수되었습니다. (야옹)
+
+□주문번호 : #{orderNo}
+□결제금액 : #{settlePrice}원
+□입금계좌 : #{bankaccount}
+
+▷[#{shop_name}] 놀러가기 : #{shortcut_link}
+▷[#{shop_name}] 고객센터 : #{cs_phone}

@@ -1,0 +1,11 @@
+[#{shop_name}]
+
+#{order_name}님, 주문하신 상품이 배송 시작되었습니다 
+(야옹)(야옹)(야옹)
+
+□주문번호 : #{orderNo}
+□송장번호 : 
+#{deliveryName}/#{invoiceNo}
+
+▷[#{shop_name}] 놀러가기 : #{shortcut_link}
+▷[#{shop_name}] 고객센터 : #{cs_phone}

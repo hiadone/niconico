@@ -1,0 +1,16 @@
+INFO	[2021-03-18 18:04:29:291] <363> START INIPHP cancel (NV5053-20190404)(OS:Linux5.4.0-1029-aws,PHP:7.3.19-1+ubuntu18.04.1+deb.sury.org+1)
+DEBUG	[2021-03-18 18:04:29:291] <363> inipayhome:/home/niconicomall/www/shop/inicis
+DEBUG	[2021-03-18 18:04:29:291] <363> debug:false
+DEBUG	[2021-03-18 18:04:29:291] <363> encMethod:openssl
+DEBUG	[2021-03-18 18:04:29:291] <363> type:cancel
+DEBUG	[2021-03-18 18:04:29:291] <363> mid:Niconico88
+DEBUG	[2021-03-18 18:04:29:291] <363> admin:1111
+DEBUG	[2021-03-18 18:04:29:291] <363> tid:StdpayCARDNiconico8820210318180428162802
+DEBUG	[2021-03-18 18:04:29:291] <363> cancelmsg:DB FAIL
+INFO	[2021-03-18 18:04:29:291] <363> Check Field OK
+INFO	[2021-03-18 18:04:29:291] <363> INPUT TID > StdpayCARDNiconico8820210318180428162802
+INFO	[2021-03-18 18:04:29:291] <363> PI PUB KEY LOAD OK []
+INFO	[2021-03-18 18:04:29:291] <363> PG PUB KEY LOAD OK [30]
+ERROR	[2021-03-18 18:04:29:291] <363> 상점개인키 로드오류
+INFO	[2021-03-18 18:04:29:368] <363> END cancel [TX9301|상점개인키 로드오류] Laptime:[0.077sec]
+INFO	[2021-03-18 18:04:29:368] <363> ===============================================================

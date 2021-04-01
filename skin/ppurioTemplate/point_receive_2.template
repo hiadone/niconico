@@ -1,0 +1,10 @@
+[#{shop_name}]
+
+#{mbr_name}님 안녕하세요!
+
+#{mbr_name}님의 적립금이 지급되었습니다. (씨익)
+
+▷지급 적립금 : #{rc_point}원
+
+▷[#{shop_name}] 고객센터 : 
+#{cs_phone}

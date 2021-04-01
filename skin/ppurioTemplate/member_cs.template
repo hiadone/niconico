@@ -1,0 +1,8 @@
+[#{shop_name}]
+
+#{mbr_name}님 안녕하세요 (미소)
+
+'회원문의' 게시판 문의내역에 답변이 등록되었습니다.
+
+▷[#{shop_name}] 바로가기 : #{shortcut_link}
+▷[#{shop_name}] 고객센터 : #{cs_phone}

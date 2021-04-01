@@ -1,0 +1,12 @@
+[#{shop_name}]
+
+#{order_name}님의 소중한 주문이 결제 완료되었습니다. (야옹)
+
+□주문번호 : #{orderNo}
+□결제금액 : #{settlePrice}원
+
+배송이 시작되면 다시 안내해 드릴게요. 
+감사합니다♡
+
+▷[#{shop_name}] 고객센터 : 
+#{cs_phone}

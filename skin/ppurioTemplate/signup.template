@@ -1,0 +1,12 @@
+[#{shop_name}]
+
+안녕하세요! #{mbr_name}님
+
+니코니코몰의 회원이 되신 것을 진심으로 환영합니다♡
+#{mbr_name}님의 니코니코몰
+ID : #{mbr_id}
+
+#{mbr_name}님을 위한 상품들이 많이 준비되어 있습니다. 앞으로 잘 부탁드려요 (아잉)
+
+▷[#{shop_name}] 놀러가기 : #{shortcut_link}
+▷[#{shop_name}] 고객센터 : #{cs_phone}

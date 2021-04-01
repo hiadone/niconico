@@ -1,0 +1,9 @@
+[#{shop_name}]
+
+#{order_name}님의 요청하신 주문내역 환불처리가 완료되었습니다.
+
+□주문번호 : #{orderNo}
+□결제금액 : #{settlePrice}원
+
+▷[#{shop_name}] 고객센터 : 
+#{cs_phone}
