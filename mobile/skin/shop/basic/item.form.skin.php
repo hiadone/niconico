@@ -137,8 +137,8 @@ add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
                         <?php
                         $href = G5_SHOP_URL.'/iteminfo.php?it_id='.$it_id;
                         ?>
-						<input type="hidden" value="http://<?php echo $_SERVER[HTTP_HOST]; ?><?php echo $_SERVER[REQUEST_URI]; ?>">
-						<a id="myUrl" data-clipboard-text="http://<?php echo $_SERVER[HTTP_HOST]; ?><?php echo $_SERVER[REQUEST_URI]; ?>">URL 복사</a>
+						<input type="hidden" value="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $_SERVER['REQUEST_URI']; ?>">
+						<a id="myUrl" data-clipboard-text="http://<?php echo $_SERVER['HTTP_HOST']; ?><?php echo $_SERVER['REQUEST_URI']; ?>">URL 복사</a>
                         <!-- <a href="javascript:popup_item_recommend('<?php echo $it['it_id']; ?>');" id="sit_btn_rec"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sound_only">추천하기</span></a> -->
                     </div>
                 </div>
