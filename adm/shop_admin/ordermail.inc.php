@@ -11,11 +11,11 @@ if ($od_send_mail)
 
     $addmemo = nl2br(stripslashes($addmemo));
 
-    unset($cart_list);
-    unset($card_list);
-    unset($bank_list);
-    unset($point_list);
-    unset($delivery_list);
+    $cart_list = array();
+    $card_list = array();
+    $bank_list = array();
+    $point_list = array();
+    $delivery_list = array();
 
     $sql = " select *
                from {$g5['g5_shop_cart_table']}
