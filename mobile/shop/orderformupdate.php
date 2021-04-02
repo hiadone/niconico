@@ -540,28 +540,30 @@ if($od_settle_case == 'KAKAOPAY')
 // 주문금액과 결제금액이 일치하는지 체크
 if($tno) {
     if((int)$order_price !== (int)$pg_price) {
-        $cancel_msg = '결제금액 불일치';
-        switch($od_pg) {
-            case 'lg':
-                include G5_SHOP_PATH.'/lg/xpay_cancel.php';
-                break;
-            case 'inicis':
-                include G5_SHOP_PATH.'/inicis/inipay_cancel.php';
-                break;
-            case 'KAKAOPAY':
-                $_REQUEST['TID']               = $tno;
-                $_REQUEST['Amt']               = $amount;
-                $_REQUEST['CancelMsg']         = $cancel_msg;
-                $_REQUEST['PartialCancelCode'] = 0;
-                include G5_SHOP_PATH.'/kakaopay/kakaopay_cancel.php';
-                break;
-            default:
-                include G5_SHOP_PATH.'/kcp/pp_ax_hub_cancel.php';
-                break;
+        if(abs((int)$order_price - (int)$pg_price) > 10 ){
+            $cancel_msg = '결제금액 불일치';
+            switch($od_pg) {
+                case 'lg':
+                    include G5_SHOP_PATH.'/lg/xpay_cancel.php';
+                    break;
+                case 'inicis':
+                    include G5_SHOP_PATH.'/inicis/inipay_cancel.php';
+                    break;
+                case 'KAKAOPAY':
+                    $_REQUEST['TID']               = $tno;
+                    $_REQUEST['Amt']               = $amount;
+                    $_REQUEST['CancelMsg']         = $cancel_msg;
+                    $_REQUEST['PartialCancelCode'] = 0;
+                    include G5_SHOP_PATH.'/kakaopay/kakaopay_cancel.php';
+                    break;
+                default:
+                    include G5_SHOP_PATH.'/kcp/pp_ax_hub_cancel.php';
+                    break;
+            }
+            
+            if(function_exists('add_order_post_log')) add_order_post_log($cancel_msg);
+            die("Receipt Amount Error");
         }
-        
-        if(function_exists('add_order_post_log')) add_order_post_log($cancel_msg);
-        die("Receipt Amount Error");
     }
 }
 
