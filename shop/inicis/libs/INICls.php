@@ -1063,12 +1063,17 @@ class INIData {
     }
 
     function ParsePIEncrypted() {
-        parse_str($this->m_REQUEST["encrypted"]);
-        $this->m_PIPGPubSN = $CertVer;
-        $this->m_PG1 = $pg1;
-        $this->m_PG2 = $pg2;
-        $this->m_PG1IP = $pg1ip;
-        $this->m_PG2IP = $pg2ip;
+        $output = array();
+        if( isset($this->m_REQUEST["encrypted"]) ) {
+            parse_str($this->m_REQUEST["encrypted"], $output);
+        }
+        $this->m_PIPGPubSN = isset($output['CertVer']) ? $output['CertVer'] : '';
+        $this->m_PG1 = isset($output['pg1']) ? $output['pg1'] : '';
+        $this->m_PG2 = isset($output['pg2']) ? $output['pg2'] : '';
+        $this->m_PG1IP = isset($output['pg1ip']) ? $output['pg1ip'] : '';
+        $this->m_PG2IP = isset($output['pg2ip']) ? $output['pg2ip'] : '';
+
+        
     }
 
     // Xpath로 안가져온다. 한달을 헛지랄 했다!!
