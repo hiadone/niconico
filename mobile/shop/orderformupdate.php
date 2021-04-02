@@ -46,6 +46,13 @@ if (get_cart_count($tmp_cart_id) == 0) {    // 장바구니에 담기
     alert('장바구니가 비어 있습니다.\\n\\n이미 주문하셨거나 장바구니에 담긴 상품이 없는 경우입니다.', G5_SHOP_URL.'/cart.php');
 }
 
+// 변수 초기화
+$od_other_pay_type = '';
+
+$od_temp_point = isset($_POST['od_temp_point']) ? (int) $_POST['od_temp_point'] : 0;
+$od_hope_date = isset($_POST['od_hope_date']) ? clean_xss_tags($_POST['od_hope_date'], 1, 1) : '';
+$ad_default = isset($_POST['ad_default']) ? (int) $_POST['ad_default'] : 0;
+
 $error = "";
 // 장바구니 상품 재고 검사
 $sql = " select it_id,
