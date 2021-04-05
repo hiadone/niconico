@@ -49,7 +49,7 @@ if (get_cart_count($tmp_cart_id) == 0) {    // 장바구니에 담기
 // 변수 초기화
 $od_other_pay_type = '';
 
-$od_temp_point = isset($_POST['od_temp_point']) ? (int) $_POST['od_temp_point'] : 0;
+$od_temp_point = isset($_POST['od_temp_point']) ? (int)str_replace(",", "", $_POST['od_temp_point']) : 0;
 $od_hope_date = isset($_POST['od_hope_date']) ? clean_xss_tags($_POST['od_hope_date'], 1, 1) : '';
 $ad_default = isset($_POST['ad_default']) ? (int) $_POST['ad_default'] : 0;
 
@@ -540,30 +540,30 @@ if($od_settle_case == 'KAKAOPAY')
 // 주문금액과 결제금액이 일치하는지 체크
 if($tno) {
     if((int)$order_price !== (int)$pg_price) {
-        if(abs((int)$order_price - (int)$pg_price) > 10 ){
-            $cancel_msg = '결제금액 불일치';
-            switch($od_pg) {
-                case 'lg':
-                    include G5_SHOP_PATH.'/lg/xpay_cancel.php';
-                    break;
-                case 'inicis':
-                    include G5_SHOP_PATH.'/inicis/inipay_cancel.php';
-                    break;
-                case 'KAKAOPAY':
-                    $_REQUEST['TID']               = $tno;
-                    $_REQUEST['Amt']               = $amount;
-                    $_REQUEST['CancelMsg']         = $cancel_msg;
-                    $_REQUEST['PartialCancelCode'] = 0;
-                    include G5_SHOP_PATH.'/kakaopay/kakaopay_cancel.php';
-                    break;
-                default:
-                    include G5_SHOP_PATH.'/kcp/pp_ax_hub_cancel.php';
-                    break;
-            }
-            
-            if(function_exists('add_order_post_log')) add_order_post_log($cancel_msg);
-            die("Receipt Amount Error");
+        
+        $cancel_msg = '결제금액 불일치';
+        switch($od_pg) {
+            case 'lg':
+                include G5_SHOP_PATH.'/lg/xpay_cancel.php';
+                break;
+            case 'inicis':
+                include G5_SHOP_PATH.'/inicis/inipay_cancel.php';
+                break;
+            case 'KAKAOPAY':
+                $_REQUEST['TID']               = $tno;
+                $_REQUEST['Amt']               = $amount;
+                $_REQUEST['CancelMsg']         = $cancel_msg;
+                $_REQUEST['PartialCancelCode'] = 0;
+                include G5_SHOP_PATH.'/kakaopay/kakaopay_cancel.php';
+                break;
+            default:
+                include G5_SHOP_PATH.'/kcp/pp_ax_hub_cancel.php';
+                break;
         }
+        
+        if(function_exists('add_order_post_log')) add_order_post_log($cancel_msg);
+        die("Receipt Amount Error");
+        
     }
 }
 
