@@ -134,7 +134,7 @@ else // 장바구니에 담기
             continue;
 
         $it_id = $_POST['it_id'][$i];
-        $opt_count = count($_POST['io_id'][$it_id]);
+        $opt_count = $_POST['io_id'][$it_id] ? count($_POST['io_id'][$it_id]) : 0;
 
         if($opt_count && $_POST['io_type'][$it_id][0] != 0)
             alert('상품의 선택옵션을 선택해 주십시오.');
