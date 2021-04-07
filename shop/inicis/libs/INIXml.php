@@ -335,7 +335,8 @@ class XML {
         $xml .= "<" . $this->nodes[$root]["name"];
 
         // Check whether there are attributes for this node.
-        if (count($this->nodes[$root]["attributes"]) > 0) {
+        $count_root_attributes = (isset($this->nodes[$root]["attributes"]) && is_array($this->nodes[$root]["attributes"])) ? count($this->nodes[$root]["attributes"]) : 0;
+        if ($count_root_attributes > 0) {
             // Run through all attributes.
             foreach ($this->nodes[$root]["attributes"] as $key => $value) {
                 // Check whether this attribute is highlighted.

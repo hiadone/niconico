@@ -21,6 +21,9 @@ if (!$tmp_cart_id)
 }
 
 $tmp_cart_id = preg_replace('/[^a-z0-9_\-]/i', '', $tmp_cart_id);
+$act = isset($_POST['act']) ? clean_xss_tags($_POST['act'], 1, 1) : '';
+$post_ct_chk = (isset($_POST['ct_chk']) && is_array($_POST['ct_chk'])) ? $_POST['ct_chk'] : array();
+$post_it_ids = (isset($_POST['it_id']) && is_array($_POST['it_id'])) ? $_POST['it_id'] : array();
 
 // 레벨(권한)이 상품구입 권한보다 작다면 상품을 구입할 수 없음.
 if ($member['mb_level'] < $default['de_level_sell'])
@@ -30,18 +33,18 @@ if ($member['mb_level'] < $default['de_level_sell'])
 
 if($act == "buy")
 {
-    if(!count($_POST['ct_chk']))
+    if(!count($post_ct_chk))
         alert("주문하실 상품을 하나이상 선택해 주십시오.");
 
     // 선택필드 초기화
     $sql = " update {$g5['g5_shop_cart_table']} set ct_select = '0' where od_id = '$tmp_cart_id' ";
     sql_query($sql);
 
-    $fldcnt = count($_POST['it_id']);
+    $fldcnt = count($post_it_ids);
     for($i=0; $i<$fldcnt; $i++) {
-        $ct_chk = $_POST['ct_chk'][$i];
+        $ct_chk = $post_ct_chk[$i];
         if($ct_chk) {
-            $it_id = $_POST['it_id'][$i];
+            $it_id = $post_it_ids[$i];
 
             // 본인인증, 성인인증체크
             if(!$is_admin) {
@@ -108,14 +111,14 @@ else if ($act == "alldelete") // 모두 삭제이면
 }
 else if ($act == "seldelete") // 선택삭제
 {
-    if(!count($_POST['ct_chk']))
+    if(!count($post_ct_chk))
         alert("삭제하실 상품을 하나이상 선택해 주십시오.");
 
-    $fldcnt = count($_POST['it_id']);
+    $fldcnt = count($post_it_ids);
     for($i=0; $i<$fldcnt; $i++) {
-        $ct_chk = $_POST['ct_chk'][$i];
+        $ct_chk = $post_ct_chk[$i];
         if($ct_chk) {
-            $it_id = $_POST['it_id'][$i];
+            $it_id = $post_it_ids[$i];
             $sql = " delete from {$g5['g5_shop_cart_table']} where it_id = '$it_id' and od_id = '$tmp_cart_id' ";
             sql_query($sql);
         }
@@ -123,7 +126,7 @@ else if ($act == "seldelete") // 선택삭제
 }
 else // 장바구니에 담기
 {
-    $count = count($_POST['it_id']);
+    $count = count($post_it_ids);
     if ($count < 1)
         alert('장바구니에 담을 상품을 선택하여 주십시오.');
 
@@ -133,7 +136,7 @@ else // 장바구니에 담기
         if($act == 'multi' && !$_POST['chk_it_id'][$i])
             continue;
 
-        $it_id = $_POST['it_id'][$i];
+        $it_id = $post_it_ids[$i];
         $opt_count = $_POST['io_id'][$it_id] ? count($_POST['io_id'][$it_id]) : 0;
 
         if($opt_count && $_POST['io_type'][$it_id][0] != 0)
