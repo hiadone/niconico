@@ -16,7 +16,13 @@ define("_INDEX_", TRUE);
 include_once(G5_SHOP_PATH.'/shop.head.php');
 
 ?>
-
+<!-- more 패널, 티커 노출 스크립트 -->
+<script>
+var meta = document.createElement('meta');
+meta.setAttribute('name', 'more_page_type');
+meta.setAttribute('content', 'main');
+document.getElementsByTagName('head')[0].appendChild(meta);
+</script>
 <!-- 에임드 시작 -->
 <div id="aed_main_p"></div>
 <!-- 에임드 끝 -->
