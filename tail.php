@@ -96,7 +96,7 @@ if (G5_IS_MOBILE) {
 </style>
 	<div id="ft_company" class="ft_cnt" style="padding-top:10px;padding-bottom:30px;">
 		<script>
-			var url ="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1198671763"
+			var url ="//www.ftc.go.kr/bizCommPop.do?wrkr_no=1198671763"
 			$(document).ready(function(){
 				$('.ftc_btn').click(function(){
 					window.open(url, "bizCommPop", "width=750, height=700;");

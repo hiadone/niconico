@@ -254,7 +254,38 @@ include_once(G5_SHOP_PATH.'/settle_naverpay.inc.php');
 <?php if($is_orderable) { ?>
 <script src="<?php echo G5_JS_URL; ?>/shop.js"></script>
 <?php } ?>
+<script>
+    try
+    {
+        var evt_data = {};
+        evt_data.evt = 'view'; // 이벤트코드 'view' 고정.
+        evt_data.p_no = '<?php echo $it['it_id'] ?>'; // url상에서 쓰이는 상품코드
+        evt_data.p_name = '<?php echo $it['it_name'] ?>'; // 상품명
+        evt_data.price = '<?php echo $it['it_price']?>'; // 상품판매가격(숫자만 포함한 문자열)
+        evt_data.regular_price = '<?php echo $it['it_price']?>'; // 상품정가(숫자만 포함한 문자열)
+        evt_data.thumb = '<?php echo get_it_imageurl($it['it_id'])?>'; // 상품이미지 url
+        evt_data.p_url = '<?php echo shop_item_url($it['it_id'])?>'; // 해당 상품페이지 url(트래킹 코드 등이 포함되지 않은        순수 url)
+        evt_data.p_url_m = '<?php echo shop_item_url($it['it_id'])?>'; // 해당 상품페이지 모바일 url (optional)
+        evt_data.cate1 = '<?php echo $it['ca_name']?>'; // 카테고리 대분류. 존재하지 않으면 ''
+        evt_data.cate2 = ''; // 카테고리 중분류. 존재하지 않으면 ''
+        evt_data.cate3 = ''; // 카테고리 소분류. 존재하지 않으면 ''
+        evt_data.soldout = '<?php echo $it['it_soldout']?>'; // 품절여부. (품절이 아닐경우 '0', 품절일 경우 '1')
+        mcroPushEvent(evt_data);
+    }catch(e){
 
+    }
+</script>
+<!-- more 패널, 티커 노출 스크립트 -->
+<script>
+var meta = document.createElement('meta');
+meta.setAttribute('name', 'more_page_type');
+meta.setAttribute('content', 'detail');
+document.getElementsByTagName('head')[0].appendChild(meta);
+var meta2 = document.createElement('meta');
+meta2.setAttribute('name', 'more_detail_pid');
+meta2.setAttribute('content', '<?php echo $it['it_id'] ?>'); // 현재 페이지의 상품코드
+document.getElementsByTagName('head')[0].appendChild(meta2);
+</script>
 <div id="sit">
 
     <?php

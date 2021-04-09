@@ -299,7 +299,26 @@ if($od['od_pg'] == 'lg') {
 					}
 					?>
 				</td>
-				
+			</tr>	
+
+            <script>
+                try
+                {
+                // 상품 구매 건수만큼 반복 호출, 단 '사은품(=진열제외)' 상품의 경우 호출하지 않음.
+                {
+                    var evt_data = {};
+                    evt_data.evt = 'buy'; // 이벤트코드 'buy' 고정.
+                    evt_data.order_id = '<?php echo $od_id ?>'; // 주문번호
+                    evt_data.p_no = '<?php echo $row['it_id'] ?>'; // url상에서 쓰이는 상품코드
+                    evt_data.p_name = '<?php echo $row['it_name'] ?>'; // 상품명
+                    evt_data.price = '<?php echo $opt_price ?>'; // 실제결제금액(배송료포함X - 숫자만 포함한 문자열)
+                    // 상품결제단가 * qty
+                    evt_data.qty = '<?php echo $opt['ct_qty'] ?>'; // 상품구매수량(숫자만 포함한 문자열)
+                    mcroPushEvent(evt_data);
+                }
+                // 상품 구매 건수만큼 반복 호출
+                }catch(e){}
+            </script>
 
             <?php
                     $tot_point       += $point;
@@ -314,7 +333,7 @@ if($od['od_pg'] == 'lg') {
                 $custom_cancel = true;
             ?>
 
-			</tr>
+			
             </tbody>
             </table>
         </div>

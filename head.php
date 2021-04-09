@@ -216,8 +216,8 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 		<li>
 			<a href="javascript:void(0)"><img src="/img/common/btnQuick05.png" alt="" width="52px"/>
 			<ul class="actvie">
-				<li><a href="https://pf.kakao.com/_xkWxkxoxb" target="_blank"><img src="/img/common/ic-kakaoch.png" alt=""><span>카카오톡 채널</span></a></li>
-				<li><a href="https://unipass.customs.go.kr/csp/persIndex.do" target="_blank"><img src="/img/common/btnQuick02.png" alt=""><span>개인통관부호 발급</span></a></li>
+				<li><a href="//pf.kakao.com/_xkWxkxoxb" target="_blank"><img src="/img/common/ic-kakaoch.png" alt=""><span>카카오톡 채널</span></a></li>
+				<li><a href="//unipass.customs.go.kr/csp/persIndex.do" target="_blank"><img src="/img/common/btnQuick02.png" alt=""><span>개인통관부호 발급</span></a></li>
 <!-- 				<li><a href="http://pf.kakao.com/_bqbCT/chat" target="_blank"><img src="/img/common/btnQuick03.png" alt=""><span>카카오톡 상담</span></a></li> -->
 				<li><button class="btn_sm_cl2 btn_sm"><img src="/img/common/btnQuick06.png" alt=""><span>최근 본 상품</span></button></li>	
 			</ul>

@@ -441,7 +441,7 @@ window.criteo_q.push(
 
 <!-- AD-POP SCRIPT / DO NOT ALTER THIS SCRIPT. -->
 <!-- COPYRIGHT (C) THE A MEDIA INC. ALL RIGHTS RESERVED. -->
-<iframe src='http://script.theprimead.co.kr/winggoSetCookiePage.php?code=NDY0Ng%3D%3D&_NMNCODE_=' height='0' width='0'></iframe>
+<iframe src='//script.theprimead.co.kr/winggoSetCookiePage.php?code=NDY0Ng%3D%3D&_NMNCODE_=' height='0' width='0'></iframe>
 <!-- END OF AD-POP SCRIPT -->
 
 <?php

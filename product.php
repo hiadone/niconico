@@ -2,7 +2,7 @@
 include_once('../common.php');
 
 $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-		<rss xmlns:g=\"http://base.google.com/ns/1.0\" version=\"2.0\">
+		<rss xmlns:g=\"//base.google.com/ns/1.0\" version=\"2.0\">
 		   <channel>
 				<title>니코니코몰</title>
 				<link>https://www.niconicomall.com/shop/</link>
@@ -25,13 +25,13 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 				<g:id>". $row['it_id'] ."</g:id>
 				<g:title>". str_replace("&", "&amp;", $row['it_name']) ."</g:title>
 				<g:google_product_category>". $itemInfo['ca_name'] ."</g:google_product_category>
-				<g:link>http://dev.niconicomall.com/shop/item.php?it_id=". $row['it_id'] ."</g:link>
+				<g:link>".G5_URL."/shop/item.php?it_id=". $row['it_id'] ."</g:link>
 				<g:image_link>". $imgUrl ."</g:image_link>
 				<g:availability>". $availability ."</g:availability>
 				<g:price>". $row['it_cust_price'] ."</g:price>
 				<g:sale_price>". $row['it_price'] ."</g:sale_price>
 				<g:product_type>". $itemInfo['ca_name'] ."</g:product_type>
-				<g:mobile_link>http://dev.niconicomall.com/shop/item.php?it_id=". $row['it_id'] ."&amp;device=mobile</g:mobile_link>
+				<g:mobile_link>".G5_URL."/shop/item.php?it_id=". $row['it_id'] ."&amp;device=mobile</g:mobile_link>
 				<g:condition>". $itemInfo['ca_name'] ."</g:condition>
 				<g:availability_date>". $row['it_update_time'] ."</g:availability_date>
 				<g:item_group_id>". $row['ca_id'] ."</g:item_group_id>

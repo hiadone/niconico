@@ -41,6 +41,7 @@ if ($_GET["it_id"]) {
 	$prdImgPath = get_it_imageurl($_GET["it_id"]);
 }
 ?>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -89,6 +90,7 @@ function mobRf() {
       kakaoPixel('2246260085587358355').pageView();
 </script>
 
+<script async type="text/javascript" src="//cro.myshp.us/resources/common/js/more-common.js"></script>
 <!-- Retaku script Start 삭제시 주의하세요-->
 <script type = "text/javascript">
 window.rtk_item_url = "/shop/item.php?it_id=" ;
@@ -175,7 +177,7 @@ if(!defined('G5_IS_ADMIN'))
 <meta name="description" content="카베진, 동전파스, 샤론파스를 국내 1등 일본 직구 구매대행 쇼핑몰 니코니코몰에서 만나보세요.">
 <meta name="robots" content="index,follow">
 <meta property="og:title" content="<?php echo $g5_head_title; ?>" />
-<meta property="og:url" content="http://<?php echo $_SERVER["HTTP_HOST"], $_SERVER['REQUEST_URI']; ?>" />
+<meta property="og:url" content="//<?php echo $_SERVER["HTTP_HOST"], $_SERVER['REQUEST_URI']; ?>" />
 <meta property="og:description" content="카베진, 동전파스, 샤론파스를 국내 1등 일본 직구 구매대행 쇼핑몰 니코니코몰에서 만나보세요." />
 <?php if ( $prdImgPath != '' ) { ?>
 <meta property="og:image" content="<?php echo $prdImgPath; ?>" />

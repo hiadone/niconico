@@ -5,7 +5,13 @@ define("_INDEX_", TRUE);
 
 include_once(G5_MSHOP_PATH.'/_head.php');
 ?>
-
+<!-- more 패널, 티커 노출 스크립트 -->
+<script>
+var meta = document.createElement('meta');
+meta.setAttribute('name', 'more_page_type');
+meta.setAttribute('content', 'main');
+document.getElementsByTagName('head')[0].appendChild(meta);
+</script>
 <script src="<?php echo G5_JS_URL; ?>/swipe.js"></script>
 <script src="<?php echo G5_JS_URL; ?>/shop.mobile.main.js"></script>
 
@@ -376,7 +382,7 @@ include_once(G5_MSHOP_PATH.'/_head.php');
 
 <!-- AD-POP SCRIPT / DO NOT ALTER THIS SCRIPT. -->
 <!-- COPYRIGHT (C) THE A MEDIA INC. ALL RIGHTS RESERVED. -->
-<iframe src='http://script.theprimead.co.kr/winggoSetCookiePage.php?code=NDY0Ng%3D%3D&_NMNCODE_=' height='0' width='0'></iframe>
+<iframe src='//script.theprimead.co.kr/winggoSetCookiePage.php?code=NDY0Ng%3D%3D&_NMNCODE_=' height='0' width='0'></iframe>
 <!-- END OF AD-POP SCRIPT -->
 
 <?php
