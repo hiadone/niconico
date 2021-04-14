@@ -67,6 +67,13 @@ if ($is_admin)
 <script>
 var itemlist_ca_id = "<?php echo $ca_id; ?>";
 </script>
+
+<script>
+var meta = document.createElement('meta');
+meta.setAttribute('name', 'more_page_type');
+meta.setAttribute('content', 'category');
+document.getElementsByTagName('head')[0].appendChild(meta);
+</script>
 <script src="<?php echo G5_JS_URL; ?>/shop.list.js"></script>
 
 <!-- 상품 목록 시작 { -->

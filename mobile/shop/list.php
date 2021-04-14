@@ -59,6 +59,12 @@ define('G5_SHOP_CSS_URL', str_replace(G5_PATH, G5_URL, $skin_dir));
 <script>
 var g5_shop_url = "<?php echo G5_SHOP_URL; ?>";
 </script>
+<script>
+var meta = document.createElement('meta');
+meta.setAttribute('name', 'more_page_type');
+meta.setAttribute('content', 'category');
+document.getElementsByTagName('head')[0].appendChild(meta);
+</script>
 <script src="<?php echo G5_JS_URL; ?>/shop.mobile.list.js"></script>
 
 <div id="sct">

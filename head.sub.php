@@ -206,6 +206,16 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=329826221406407&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
+
+<script>
+var _croID = '606e896863ed7262a96a2b12';
+function createMoreRCView(e){"undefined"!=typeof globalCRO?new globalCRO.MoreRecommendView(e):
+("undefined"==typeof gCroRCV&&(window.gCroRCV=new Array),gCroRCV.push({config:e}))}
+function mcroPushEvent(n){"undefined"!=typeof globalCRO?globalCRO.sendEvent(n):
+("undefined"==typeof gCro&&(window.gCro=new Array),gCro.push(n))}
+function _cro_initialize(){window.globalCRO=new MCro,globalCRO.jsInit(_croID)}
+</script>
+
 </head>
 <body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
 <!-- Google Tag Manager (noscript) -->
