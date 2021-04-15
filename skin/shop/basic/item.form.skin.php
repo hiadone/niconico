@@ -644,17 +644,21 @@ $(function(){
     });
 
 	$("#goPaymentPageBtn").click(function(){
+		popupClose();
 		var f = document.fitem;
 		f.submit();
 	});
 
 	$("#goPaymentPageBtn3").click(function(){
+		popupClose3();
 		var f = document.fitem;
 		f.submit();
 	});
 
 	$("#goCartPageBtn").click(function(){
+		
 		location.href = '/shop/cart.php';
+		popupClose2();
 	});
 });
 
@@ -726,7 +730,7 @@ function fitem_submit(f)
     f.action = "<?php echo $action_url; ?>";
     //f.target = "";
 	f.windowMode.value = 1;
-
+	
     if (document.pressed == "장바구니") {
         f.sw_direct.value = 0;
     } else { // 바로구매
@@ -836,13 +840,15 @@ function fitem_submit(f)
 		}
 	});
 
-	if (total > 170000)
-	{
-		goDetail();
-		return false;
-	} else {
-		goDetail3();
-		return false;
+	if (document.pressed == "바로구매") {
+		if (total > 170000)
+		{
+			goDetail();
+			return false;
+		} else {
+			goDetail3();
+			return false;
+		}
 	}
 	return true;
 }

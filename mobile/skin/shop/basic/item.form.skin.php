@@ -1036,16 +1036,16 @@ function fitem_submit(f)
 			total += price * qty;
 		}
 	});
-
-	if (total > 170000)
-	{
-		goDetail();
-		return false;
-	} else {
-        goDetail3();
-        return false;
+    if (document.pressed == "바로구매") {
+    	if (total > 170000)
+    	{
+    		goDetail();
+    		return false;
+    	} else {
+            goDetail3();
+            return false;
+        }
     }
-
     return true;
 }
 
