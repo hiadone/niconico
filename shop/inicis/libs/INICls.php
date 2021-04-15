@@ -922,7 +922,7 @@ class INIData {
             $this->m_RESULT[NM_RESULTMSG] = $this->GetXMLData("ResultMsg");
         } else {
             $this->m_RESULT[NM_RESULTCODE] = "01";
-            $this->m_RESULT[NM_ERRORCODE] = $ResultCode;
+            $this->m_RESULT['NM_ERRORCODE'] = $ResultCode;
             $this->m_RESULT[NM_RESULTMSG] = "[" . $ResultCode . "|" . $this->GetXMLData("ResultMsg") . "]";
         }
         $encrypted = $this->GetXMLData("Encrypted");
