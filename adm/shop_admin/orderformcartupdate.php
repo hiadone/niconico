@@ -11,7 +11,7 @@ $ct_chk_count = count($_POST['ct_chk']);
 if(!$ct_chk_count)
     alert('처리할 자료를 하나 이상 선택해 주십시오.');
 
-$status_normal = array('주문','입금','준비','배송','완료');
+$status_normal = array('주문','입금','준비','배송','완료','쇼핑');
 $status_cancel = array('취소','반품','품절');
 
 if (in_array($_POST['ct_status'], $status_normal) || in_array($_POST['ct_status'], $status_cancel)) {
@@ -72,6 +72,7 @@ for ($i=0; $i<$cnt; $i++)
     $stock_use = $ct['ct_stock_use'];
     if ($ct['ct_stock_use'])
     {
+        
         if ($ct_status == '주문' || $ct_status == '취소' || $ct_status == '반품' || $ct_status == '품절')
         {
             $stock_use = 0;
@@ -93,6 +94,7 @@ for ($i=0; $i<$cnt; $i++)
     }
     else
     {
+        
         // 재고 오류로 인한 수정
         if ($ct_status == '배송' || $ct_status == '완료')
         {
@@ -110,6 +112,43 @@ for ($i=0; $i<$cnt; $i++)
                             where it_id = '{$ct['it_id']}' ";
             }
 
+            sql_query($sql);
+        }
+        elseif($ct_status === '쇼핑'){
+            
+            if($ct['ct_comeback']){
+                alert('이미 장바구니에 복구한 상품입니다..');
+            }
+            $sql = " INSERT INTO {$g5['g5_shop_cart_table']}
+                        ( od_id, mb_id, it_id, it_name, it_sc_type, it_sc_method, it_sc_price, it_sc_minimum, it_sc_qty, ct_status, ct_price, ct_point, ct_point_use, ct_stock_use, ct_option, ct_qty, ct_notax, io_id, io_type, io_price, ct_time, ct_ip, ct_send_cost, ct_direct, ct_select, ct_select_time )
+                    VALUES (
+                        '',
+                        '".$ct['mb_id']."',
+                        '".$ct['it_id']."',
+                        '".addslashes($ct['it_name'])."',
+                        '".$ct['it_sc_type']."',
+                        '".$ct['it_sc_method']."',
+                        '".$ct['it_sc_price']."',
+                        '".$ct['it_sc_minimum']."',
+                        '".$ct['it_sc_qty']."',
+                        '".$ct_status."',
+                        '".$ct['ct_price']."',
+                        '".$ct['ct_point']."',
+                        '".$ct['ct_point_use']."',
+                        '".$ct['ct_stock_use']."',
+                        '".$ct['ct_option']."',
+                        '".$ct['ct_qty']."',
+                        '".$ct['ct_notax']."',
+                        '".$ct['io_id']."',
+                        '".$ct['io_type']."',
+                        '".$ct['io_price']."',
+                        '".$ct['ct_time']."',
+                        '".$ct['ct_ip']."',
+                        '".$ct['ct_send_cost']."',
+                        0,
+                        1,
+                        '".G5_TIME_YMDHIS."'
+                    )";                    
             sql_query($sql);
         }
         /* 주문 수정에서 "품절" 선택시 해당 상품 자동 품절 처리하기
@@ -136,13 +175,20 @@ for ($i=0; $i<$cnt; $i++)
     $now = G5_TIME_YMDHIS;
     $ct_history="\n$ct_status|{$member['mb_id']}|$now|$REMOTE_ADDR";
 
+    if($ct_status === '쇼핑') {
+        // $ct_status_sql = "ct_status     = CONCAT(ct_status,' ".$ct_status."'),";
+        $ct_status_sql = "ct_comeback = 1,";
+    } else {
+        $ct_status_sql = "ct_status     = '$ct_status',";
+    }
     $sql = " update {$g5['g5_shop_cart_table']}
                 set ct_point_use  = '$point_use',
                     ct_stock_use  = '$stock_use',
-                    ct_status     = '$ct_status',
+                    ".$ct_status_sql."
                     ct_history    = CONCAT(ct_history,'$ct_history')
                 where od_id = '$od_id'
                 and ct_id  = '$ct_id' ";
+    
     sql_query($sql);
 
     // it_id를 배열에 저장
@@ -340,30 +386,31 @@ $sql = " update {$g5['g5_shop_order_table']}
                 od_vat_mny      = '{$info['od_vat_mny']}',
                 od_free_mny     = '{$info['od_free_mny']}' ";
 */
-$sql = " update {$g5['g5_shop_order_table']}
-            set od_cart_price   = '{$info['od_cart_price']}',
-                od_cart_coupon  = '{$info['od_cart_coupon']}',
-                od_coupon       = '{$info['od_coupon']}',
-                od_send_coupon  = '{$info['od_send_coupon']}',
-                od_cancel_price = '{$info['od_cancel_price']}',
-                od_tax_mny      = '{$info['od_tax_mny']}',
-                od_vat_mny      = '{$info['od_vat_mny']}',
-                od_free_mny     = '{$info['od_free_mny']}' ";
-if ($mod_history) { // 주문변경 히스토리 기록
-    $sql .= " , od_mod_history = CONCAT(od_mod_history,'$mod_history') ";
-}
-
-if($cancel_change) {
-    $sql .= " , od_status = '취소' "; // 주문상품 모두 취소, 반품, 품절이면 주문 취소
-} else {
-    if (in_array($_POST['ct_status'], $status_normal)) { // 정상인 주문상태만 기록
-        $sql .= " , od_status = '{$_POST['ct_status']}' ";
+if($ct_status !== '쇼핑'){
+    $sql = " update {$g5['g5_shop_order_table']}
+                set od_cart_price   = '{$info['od_cart_price']}',
+                    od_cart_coupon  = '{$info['od_cart_coupon']}',
+                    od_coupon       = '{$info['od_coupon']}',
+                    od_send_coupon  = '{$info['od_send_coupon']}',
+                    od_cancel_price = '{$info['od_cancel_price']}',
+                    od_tax_mny      = '{$info['od_tax_mny']}',
+                    od_vat_mny      = '{$info['od_vat_mny']}',
+                    od_free_mny     = '{$info['od_free_mny']}' ";
+    if ($mod_history) { // 주문변경 히스토리 기록
+        $sql .= " , od_mod_history = CONCAT(od_mod_history,'$mod_history') ";
     }
+
+    if($cancel_change) {
+        $sql .= " , od_status = '취소' "; // 주문상품 모두 취소, 반품, 품절이면 주문 취소
+    } else {
+        if (in_array($_POST['ct_status'], $status_normal)) { // 정상인 주문상태만 기록
+            $sql .= " , od_status = '{$_POST['ct_status']}' ";
+        }
+    }
+
+    $sql .= " where od_id = '$od_id' ";
+    sql_query($sql);
 }
-
-$sql .= " where od_id = '$od_id' ";
-sql_query($sql);
-
 
 /*** 뿌리오 발송 ***/
 // 주문정보

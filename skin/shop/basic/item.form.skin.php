@@ -463,7 +463,11 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 		id="layerbox_close">X</a> <br>
 	<div class="content">
 		1회 통관 시 배송비 제외 상품금액 150$ (한화 17만원)이내에서 면세입니다.
-		<br>이를 초과할 시에는 추가 관세가 발생할 수 있습니다
+		<br><span class="txt_done" style="font-weight:bold;font-size:1.083em">※ 이를 초과할 시에는 추가 관세가 발생할 수 있습니다 ※</span>
+		<br/>
+		<br/>의약품은 관세법상 통관 기준인 1인당 6개까지 구매하실 수 있습니다.
+		<br/>의약품 카테고리 상품을 6개 이상 주문한 경우에는
+		<br/>니코니코몰 카톡 상당창 또는 고객센터로 알려주시면 처리해드립니다.
 		<br/>
 		<br/>
 		<br/>
@@ -493,6 +497,27 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 </div>
 <!--Popup End -->
 
+<!--Popup Start -->
+<div id="layerbox3" class="layerpop"
+	style="width: 700px; height: 300px;">
+	<article class="layerpop_area">
+	<div class="title">주문하기 안내</div>
+	<a href="javascript:popupClose3();" class="layerpop_close"
+		id="layerbox_close">X</a> <br>
+	<div class="content">		
+		의약품은 관세법상 통관 기준인 1인당 6개까지 구매하실 수 있습니다.
+		<br/>의약품 카테고리 상품을 6개 이상 주문한 경우에는
+		<br/>니코니코몰 카톡 상당창 또는 고객센터로 알려주시면 처리해드립니다.
+		<br/>
+		<br/>
+		<br/>
+		<button id="goPaymentPageBtn3" class="sec1">결제 계속하기</button>
+		<button onclick="popupClose3();" class="sec2">상품보기 돌아가기</button>
+	</div>
+	</article>
+</div>
+<!--Popup End -->
+
 <style>
 /*-- POPUP common style S ======================================================================================================================== --*/
 #mask {
@@ -509,7 +534,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 
 .layerpop {
     display: none;
-	height:300px !important;
+	/*height:300px !important;*/
     z-index: 1000;
 	position:fixed !important;
     border: 2px solid #ccc;
@@ -619,6 +644,11 @@ $(function(){
     });
 
 	$("#goPaymentPageBtn").click(function(){
+		var f = document.fitem;
+		f.submit();
+	});
+
+	$("#goPaymentPageBtn3").click(function(){
 		var f = document.fitem;
 		f.submit();
 	});
@@ -810,6 +840,9 @@ function fitem_submit(f)
 	{
 		goDetail();
 		return false;
+	} else {
+		goDetail3();
+		return false;
 	}
 	return true;
 }
@@ -853,8 +886,22 @@ function popupOpen2() {
 	$('#layerbox2').show();
 }
 
+function popupOpen3() {
+	$('.layerpop').css("position", "absolute");
+	//영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+	//$('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+	//$('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+	//$('.layerpop').draggable();
+	$('#layerbox3').show();
+}
+
 function popupClose() {
 	$('#layerbox').hide();
+	$('#mask').hide();
+}
+
+function popupClose3() {
+	$('#layerbox3').hide();
 	$('#mask').hide();
 }
 
@@ -867,6 +914,14 @@ function goDetail() {
 	/*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
 
 	popupOpen(); //레이어 팝업창 오픈 
+	wrapWindowByMask(); //화면 마스크 효과 
+}
+
+function goDetail3() {
+
+	/*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
+
+	popupOpen3(); //레이어 팝업창 오픈 
 	wrapWindowByMask(); //화면 마스크 효과 
 }
 

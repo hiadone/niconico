@@ -52,7 +52,8 @@ $sql = " select it_id,
                 cp_price,
                 ct_notax,
                 ct_send_cost,
-                it_sc_type
+                it_sc_type,
+                ct_comeback
            from {$g5['g5_shop_cart_table']}
           where od_id = '{$od['od_id']}'
           group by it_id
@@ -208,7 +209,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 $ct_price['stotal'] = $opt_price * $opt['ct_qty'];
                 $ct_point['stotal'] = $opt['ct_point'] * $opt['ct_qty'];
             ?>
-            <tr>
+            <tr class="<?php  echo $row['ct_comeback'] ? 'txt_fail': '';?>">
                 <?php if($k == 0) { ?>
                 <td rowspan="<?php echo $rowspan; ?>" class="td_left">
                     <a href="./itemform.php?w=u&amp;it_id=<?php echo $row['it_id']; ?>"><?php echo $image; ?> <?php echo stripslashes($row['it_name']); ?></a>
@@ -261,6 +262,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
             <input type="submit" name="ct_status" value="취소" onclick="document.pressed=this.value" class="btn_02 color_06">
             <input type="submit" name="ct_status" value="반품" onclick="document.pressed=this.value" class="btn_02 color_06">
             <input type="submit" name="ct_status" value="품절" onclick="document.pressed=this.value" class="btn_02 color_06">
+            <input type="submit" name="ct_status" value="쇼핑" title="해당 상품을 장바구니에 복구" onclick="document.pressed=this.value" class="btn_02 color_01">
         </p>
     </div>
 

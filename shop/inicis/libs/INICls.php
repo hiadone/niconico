@@ -908,7 +908,7 @@ class INIData {
         $this->m_Xml = $xml->xml_node;
 
         //GOODSINFO
-        $this->m_RESULT[NM_MOID] = $this->GetXMLData(MOID);
+        $this->m_RESULT[NM_MOID] = $this->GetXMLData('MOID');
 
         //PAYMENTINFO
         //기타지불수단이 paymethod를 주지 않아 임시로 요청 Paymethod로 대체

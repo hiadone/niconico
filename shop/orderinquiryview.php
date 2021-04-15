@@ -330,7 +330,8 @@ if($od['od_pg'] == 'lg') {
             }
             // 주문 상품의 상태가 모두 주문이면 고객 취소 가능
             if($st_count1 > 0 && $st_count1 == $st_count2)
-                $custom_cancel = true;
+                $custom_cancel = false;
+                // $custom_cancel = true; //주문 취소 기능 막기
             ?>
 
 			
