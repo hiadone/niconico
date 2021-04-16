@@ -1608,7 +1608,7 @@ function sql_query($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
     if(function_exists('mysqli_query') && G5_MYSQLI_USE) {
         if ($error) {
             $result = @mysqli_query($link, $sql) or die("<p>$sql<p>" . mysqli_errno($link) . " : " .  mysqli_error($link) . "<p>error file : {$_SERVER['SCRIPT_NAME']}");            
-            write_log2("/home/devniconicomall/www/data/log/sql.log", $sql);
+            
         } else {
             $result = @mysqli_query($link, $sql);
         }
@@ -3825,13 +3825,5 @@ function option_array_checked($option, $arr=array()){
     return $checked;
 }
 
-function write_log2($file, $log) {
-    $fp = fopen($file, "a+");
-    ob_start();
-    print_r($log);
-    $msg = ob_get_contents();
-    ob_end_clean();
-    fwrite($fp, $msg);
-    fclose($fp);
-}
+
 ?>
