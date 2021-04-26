@@ -120,51 +120,105 @@ function replaceNameFunc($str) {
     ?>
 
         <li class="sit_use_li">
+            
 			<div class="sit_use_li_title2">
-				<div>
-					<dl class="sit_use_dl">
-						<dt>선호도</dt>
-						<dd class="sit_use_star"><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $is_star; ?>.png" alt="별<?php echo $is_star; ?>개"></dd>
-						<dt>제목</dt>
+                <?php if ($row['is_type'] == 'photo') {?>
+                
+                <div style="float:left;width:20%;margin-top: 10px;"><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 60, 60); ?></div> 
+                <div style="float:left;width:80%;">
+                    <div>
+                        <dl class="sit_use_dl">
+                            
+                            <dt>선호도</dt>
+                            <dd class="sit_use_star"><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $is_star; ?>.png" alt="별<?php echo $is_star; ?>개"></dd>
+                            <dt>제목</dt>
 
-						<?php
-							$is_subject = trim(iconv_substr(str_replace("&nbsp;", "", strip_tags($is_subject)), 0, 20, 'utf-8'));
-						?>
-						<dd><span class="sit_use_li_title" style="display:inline-block;width:auto;color:#000;"><?php echo $is_subject; ?></span>
-						<?php
-							/* 재구매인지 체크 */
-								$query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $row['mb_id'] ."' AND od_id < '". $row['od_id'] ."' AND od_id != '' AND is_status = 1 ";
-								$res = sql_fetch($query);
-								if ($res['cnt'] > 0) {
-							?>
-							<span style="color: #fff;
+                            <?php
+                                $is_subject = trim(iconv_substr(str_replace("&nbsp;", "", strip_tags($is_subject)), 0, 16, 'utf-8'));
+                            ?>
+                            <dd><span class="sit_use_li_title" style="display:inline-block;width:auto;color:#000;"><?php echo $is_subject; ?></span>
+                            <?php
+                                /* 재구매인지 체크 */
+                                    $query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $row['mb_id'] ."' AND od_id < '". $row['od_id'] ."' AND od_id != '' AND is_status = 1 ";
+                                    $res = sql_fetch($query);
+                                    if ($res['cnt'] > 0) {
+                                ?>
+                                <span style="color: #fff;
+        background-color: #ed7d31;
+        display: inline-block;
+        font-size: 12px;
+        border-radius: 4px;
+        padding: 0px 5px;
+        vertical-align: middle;">재구매</span>
+                                <?php
+                                    }
+                                ?>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl class="sit_use_dl">
+                            <dt>작성자</dt>
+                            <dd>
+                            <?php echo $is_name; ?>(<?php echo $is_mb_id; ?>)</dd>
+                            <dt>작성일</dt>
+                            <dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $is_time; ?></dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <?php echo trim(iconv_substr(str_replace("&nbsp;", "", strip_tags($is_content)), 0, 24, 'utf-8')); ?> ...
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            <?php } else { ?>
+            
+                <div >
+                    <dl class="sit_use_dl">
+                        
+                        <dt>선호도</dt>
+                        <dd class="sit_use_star"><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $is_star; ?>.png" alt="별<?php echo $is_star; ?>개"></dd>
+                        <dt>제목</dt>
+
+                        <?php
+                            $is_subject = trim(iconv_substr(str_replace("&nbsp;", "", strip_tags($is_subject)), 0, 20, 'utf-8'));
+                        ?>
+                        <dd><span class="sit_use_li_title" style="display:inline-block;width:auto;color:#000;"><?php echo $is_subject; ?></span>
+                        <?php
+                            /* 재구매인지 체크 */
+                                $query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $row['mb_id'] ."' AND od_id < '". $row['od_id'] ."' AND od_id != '' AND is_status = 1 ";
+                                $res = sql_fetch($query);
+                                if ($res['cnt'] > 0) {
+                            ?>
+                            <span style="color: #fff;
     background-color: #ed7d31;
     display: inline-block;
     font-size: 12px;
     border-radius: 4px;
     padding: 0px 5px;
     vertical-align: middle;">재구매</span>
-							<?php
-								}
-							?>
-						</dd>
-					</dl>
-				</div>
-				<div>
-					<dl class="sit_use_dl">
-						<dt>작성자</dt>
-						<dd>
-						<?php echo $is_name; ?>(<?php echo $is_mb_id; ?>)</dd>
-						<dt>작성일</dt>
-						<dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $is_time; ?></dd>
-					</dl>
-				</div>
-				<div>
-					<?php echo trim(iconv_substr(str_replace("&nbsp;", "", strip_tags($is_content)), 0, 30, 'utf-8')); ?> ...
-				</div>
-			</div>
-
-            <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con">
+                            <?php
+                                }
+                            ?>
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <dl class="sit_use_dl">
+                        <dt>작성자</dt>
+                        <dd>
+                        <?php echo $is_name; ?>(<?php echo $is_mb_id; ?>)</dd>
+                        <dt>작성일</dt>
+                        <dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $is_time; ?></dd>
+                    </dl>
+                </div>
+                <div>
+                    <?php echo trim(iconv_substr(str_replace("&nbsp;", "", strip_tags($is_content)), 0, 30, 'utf-8')); ?> ...
+                </div>
+            
+            
+            <?php } ?>    
+            </div>    
+            <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con" >
                 <div class="sit_use_p">
                     <?php echo $is_content; // 사용후기 내용 ?>
                 </div>

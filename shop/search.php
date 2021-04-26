@@ -83,13 +83,13 @@ if ($q) {
 
         $concat = array();
         if ($search_all || $qname)
-            $concat[] = "a.it_name";
+            $concat[] = "replace(a.it_name,' ','')";
         if ($search_all || $qexplan)
-            $concat[] = "a.it_explan2";
+            $concat[] = "replace(a.it_explan2,' ','')";
         if ($search_all || $qid)
-            $concat[] = "a.it_id";
+            $concat[] = "replace(a.it_id,' ','')";
         if ($search_all || $qbasic)
-            $concat[] = "a.it_basic";
+            $concat[] = "replace(a.it_basic,' ','')";
         $concat_fields = "concat(".implode(",' ',",$concat).")";
 
         $detail_where[] = $concat_fields." like '%$word%' ";
@@ -128,6 +128,8 @@ $from_record = ($page - 1) * $items;
 
 // 검색된 내용이 몇행인지를 얻는다
 $sql = " select COUNT(*) as cnt $sql_common $sql_where ";
+
+
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 $total_page  = ceil($total_count / $items); // 전체 페이지 계산

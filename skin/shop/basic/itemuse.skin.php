@@ -141,15 +141,15 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 		<?php
 			if ($row['is_type'] == 'photo') {
 		?>
-        <li class="sit_use_li">
-			<span class="sit_thum"><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 100, 100); ?></span> 
-			<?php
-				} else {
-			?>
+            <li class="sit_use_li">
+                <span class="sit_thum"><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 100, 100); ?></span> 
+		<?php
+			} else {
+		?>
 			<li class="sit_use_li" style="padding-left:0;">
-			<?php
-				}
-			?>
+		<?php
+			}
+		?>
             <dl class="sit_use_dl" style="width: 80%;">
                 <dt>평점<dt>
                 <dd class="sit_use_star"><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $is_star; ?>.png" alt="별<?php echo $is_star; ?>개" width="85">

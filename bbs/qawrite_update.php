@@ -116,7 +116,8 @@ if($w == 'u' || $w == 'a' || $w == 'r') {
 
 // 파일개수 체크
 $file_count   = 0;
-$upload_count = count($_FILES['bf_file']['name']);
+$upload_count = isset($_FILES['bf_file']['name']) ? count($_FILES['bf_file']['name']) : 0;
+
 
 for ($i=1; $i<=$upload_count; $i++) {
     if($_FILES['bf_file']['name'][$i] && is_uploaded_file($_FILES['bf_file']['tmp_name'][$i]))
