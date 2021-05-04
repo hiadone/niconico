@@ -69,7 +69,9 @@ if (!function_exists("itemdelete")) {
         //------------------------------------------------------------------------
         $imgs = get_editor_image($it['it_explan'], false);
 
-        for($i=0;$i<count($imgs[1]);$i++) {
+        $count_imgs = (isset($imgs[1]) && is_array($imgs[1])) ? count($imgs[1]) : 0;
+
+        for($i=0;$i<$count_imgs;$i++) {
             $p = parse_url($imgs[1][$i]);
             if(strpos($p['path'], "/data/editor/") === false)
                 continue;

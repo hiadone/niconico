@@ -584,6 +584,14 @@ $(function (){
         $(".tab_con>li").hide();
         $($(this).attr("rel")).show();
     });
+
+    $(document).ready(function() {      
+        <?php if($_GET['tab_tit'] === 'sit_use') {?>
+            $(".tab_tit>li>button[rel='#sit_use']").trigger('click');   
+        <?php } else { ?>
+            $(".tab_tit>li:first>button").trigger('click');   
+        <?php } ?>
+    });
 });
 </script>
 </form>

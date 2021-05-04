@@ -122,9 +122,19 @@ function replaceNameFunc($str) {
         <li class="sit_use_li">
             
 			<div class="sit_use_li_title2">
-                <?php if ($row['is_type'] == 'photo') {?>
+                <?php if ($row['is_type'] == 'photo') {
+
+                    $thumb = get_list_thumbnail('review',$row['is_id'], 60, 60, false, true);
+
+                    if($thumb['src']) {
+                        $img_content = '<img  src="'.$thumb['src'].'" alt="'.$thumb['alt'].'" >';
+                    } else {
+                        $img_content = '<span class="no_image">no image</span>';
+                    }
+
+                ?>
                 
-                <div style="float:left;width:20%;margin-top: 10px;"><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 60, 60); ?></div> 
+                <div style="float:left;width:20%;margin-top: 10px;"><?php echo $img_content ?></div> 
                 <div style="float:left;width:80%;">
                     <div>
                         <dl class="sit_use_dl">
@@ -220,13 +230,32 @@ function replaceNameFunc($str) {
             </div>    
             <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con" >
                 <div class="sit_use_p">
+
+                    <?php
+
+                    if ($row['is_type'] == 'photo') {
+                        $file = get_file('review', $row['is_id']);
+                        // 파일 출력
+                        $v_img_count = $file['count'];
+                        if($v_img_count) {
+                            echo "<div id=\"bo_v_img\" style=\"width: 100%;overflow: hidden;\">\n";
+
+                            for ($i=0; $i<$file['count']; $i++) {  
+
+                                echo "<a href='".$file[$i]['path']."/".$file[$i]['file']."' target='_blank' class='view_image' ><img style='max-width:100%;height: auto;margin-bottom:10px;' src='".$file[$i]['path']."/".$file[$i]['file']."' alt='".$file[$i]['content']."' title='".$file[$i]['content']."'></a>";
+                            }
+
+                            echo "</div>\n";
+                        }
+                    }
+                    ?>
                     <?php echo $is_content; // 사용후기 내용 ?>
                 </div>
 
                 <?php if ($is_admin || $row['mb_id'] == $member['mb_id']) { ?>
                 <div class="sit_use_cmd">
                     <a href="<?php echo $itemuse_form."&amp;is_id={$row['is_id']}&amp;w=u"; ?>" class="itemuse_form btn01" onclick="return false;">수정</a>
-                    <a href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete btn01">삭제</a>
+                    <a data-href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete btn01">삭제</a>
                 </div>
                 <?php } ?>
 
@@ -268,6 +297,30 @@ $(function(){
 
     $(".itemuse_delete").click(function(){
         if (confirm("정말 삭제 하시겠습니까?\n\n삭제후에는 되돌릴수 없습니다.")) {
+            $.ajax({
+                url : $(this).data('href'),
+                type : 'GET',
+                dataType : 'json',
+                success : function(data) {                
+                    if (data.error) {
+                        alert(data.error);
+                        return false;
+                    } else if (data.success) {
+                        alert(data.success);
+                        if(data.url){
+                            // if(w)
+                            //     location.href=data.url;
+                            // else
+                            location.reload();
+                            opener.location.reload();
+                            
+                        }
+                        return false;
+                        // $('.' + class).text(number_format(String(data.count)));
+                        // $('#btn-' + class).effect('highlight', {color : '#f37f60'}, 500);
+                    }
+                }
+            });
             return true;
         } else {
             return false;

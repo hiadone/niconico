@@ -26,7 +26,10 @@ if ($w == "") {
     $is_score = 5;
 
     // 사용후기 작성 설정에 따른 체크
-    check_itemuse_write($it_id, $member['mb_id']);
+    
+    if(check_itemuse_write($it_id, $member['mb_id'])){
+        alert_close(check_itemuse_write($it_id, $member['mb_id']));
+    }
 } else if ($w == "u") {
     $use = sql_fetch(" select * from {$g5['g5_shop_item_use_table']} where is_id = '$is_id' ");
     if (!$use) {
@@ -39,17 +42,23 @@ if ($w == "") {
     if (!$is_admin && $use['mb_id'] != $member['mb_id']) {
         alert_close("자신의 사용후기만 수정이 가능합니다.");
     }
+
+    $file = get_file('review', $is_id);
+
+    
 }
 
 include_once(G5_PATH.'/head.sub.php');
 
 $is_dhtml_editor = false;
-// 모바일에서는 DHTML 에디터 사용불가
-if ($config['cf_editor'] && (!is_mobile() || defined('G5_IS_MOBILE_DHTML_USE') && G5_IS_MOBILE_DHTML_USE)) {
-    $is_dhtml_editor = true;
-}
+// 후기 입력시 모바일/PC 에서는 DHTML 에디터 사용불가 
+// if ($config['cf_editor'] && (!is_mobile() || defined('G5_IS_MOBILE_DHTML_USE') && G5_IS_MOBILE_DHTML_USE)) {
+//     $is_dhtml_editor = true;
+// }
+// 
+
 $editor_html = editor_html('is_content', get_text(html_purifier($use['is_content']), 0), $is_dhtml_editor);
-$editor_js = '';
+$editor_js = ''; 
 $editor_js .= get_editor_js('is_content', $is_dhtml_editor);
 $editor_js .= chk_editor_js('is_content', $is_dhtml_editor);
 

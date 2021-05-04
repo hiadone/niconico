@@ -81,7 +81,7 @@ function get_list_thumbnail($bo_table, $wr_id, $thumb_width, $thumb_height, $is_
 
 // 게시글보기 파일 썸네일 리턴
 function get_file_thumbnail($file){
-    
+
     if( ! is_array($file) ) return '';
 
     if( preg_match('/(\.jpg|\.jpeg|\.gif|\.png|\.bmp)$/i', $file['file']) && $contents = run_replace('get_file_thumbnail_tags', '', $file) ){
@@ -103,12 +103,12 @@ function get_view_thumbnail($contents, $thumb_width=0)
 
     // $contents 중 img 태그 추출
     $matches = get_editor_image($contents, true);
-
+    
     if(empty($matches))
         return $contents;
 
     for($i=0; $i<count($matches[1]); $i++) {
-
+        
         $img = $matches[1][$i];
         preg_match("/src=[\'\"]?([^>\'\"]+[^>\'\"]+)/i", $img, $m);
         $src = $m[1];
@@ -121,6 +121,7 @@ function get_view_thumbnail($contents, $thumb_width=0)
         preg_match("/alt=[\"\']?([^\"\']*)[\"\']?/", $img, $m);
         $alt = get_text($m[1]);
 
+
         // 이미지 path 구함
         $p = parse_url($src);
         if(strpos($p['path'], '/'.G5_DATA_DIR.'/') != 0)
@@ -129,7 +130,7 @@ function get_view_thumbnail($contents, $thumb_width=0)
             $data_path = $p['path'];
 
         $srcfile = G5_PATH.$data_path;
-
+        
         if(is_file($srcfile)) {
             $size = @getimagesize($srcfile);
             if(empty($size))
@@ -188,6 +189,7 @@ function get_view_thumbnail($contents, $thumb_width=0)
             if ($width) {
                 $thumb_tag = '<img src="'.G5_URL.str_replace($filename, $thumb_file, $data_path).'" alt="'.$alt.'" width="'.$width.'" height="'.$height.'"/>';
             } else {
+
                 $thumb_tag = '<img src="'.G5_URL.str_replace($filename, $thumb_file, $data_path).'" alt="'.$alt.'"/>';
             }
 

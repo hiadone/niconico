@@ -461,6 +461,7 @@ $chars_array = array_merge(range(0,9), range('a','z'), range('A','Z'));
 // 가변 파일 업로드
 $file_upload_msg = '';
 $upload = array();
+
 for ($i=0; $i<count($_FILES['bf_file']['name']); $i++) {
     $upload[$i]['file']     = '';
     $upload[$i]['source']   = '';

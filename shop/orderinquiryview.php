@@ -263,23 +263,26 @@ if($od['od_pg'] == 'lg') {
 
 						$isWriteUse = 'N';
 
+                        $query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $od_id ."' AND is_status = 1 ";
+                        $res = sql_fetch($query);
+                        
+                        if ($res['cnt'] > 0) {
+                            $isWriteUse = 'Y';
+
+                            $query = " SELECT is_score as score, is_id, is_time, is_ip,is_confirm FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $od_id ."' order by is_id desc limit 1 ";
+                            $res2 = sql_fetch($query);
+                            $score = (int)$res2['score'];
+                        }
+
 						// 작성 가능일 때
 						if ($remainDay > 0) {
-							// 후기 작성 했는지 체크
-							$query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $od_id ."' AND is_status = 1 ";
-							$res = sql_fetch($query);
 							
-							if ($res['cnt'] > 0) {
-								$isWriteUse = 'Y';
-							}
 							
 							if ($isWriteUse == 'N') {
 								echo "작성만료 D-". $remainDay;
 								echo "<br><span><a href=\"/shop/itemuseform.php?it_id=". $row['it_id'] ."&od_id=". $od_id ."\" class=\"btn02 itemuse_form\">후기 쓰기</a></span>";
 							} else {
-								$query = " SELECT is_score as score, is_confirm FROM g5_shop_item_use WHERE it_id = '". $row['it_id'] ."' AND mb_id = '". $member['mb_id'] ."'  AND od_id = '". $od_id ."' AND is_status = 1 order by is_id desc limit 1 ";
-								$res2 = sql_fetch($query);
-								$score = (int)$res2['score'];
+								
 								if ($res2['is_confirm'] == 0) {
 									echo "<label class=\"status_label\" style=\"background-color:red;\">노출대기</label>";
 									echo "관리자 검수 후 노출될 예정입니다.";
@@ -287,12 +290,27 @@ if($od['od_pg'] == 'lg') {
 									echo "<span class=\"review-star\">";
 									echo "<img src=\"". G5_URL ."/shop/img/s_star". $score .".png\">";
 									echo "</span>";
+                                    
+                                    echo '<div class="sit_use_cmd" style="margin-top:10px;">
+                                             <button type="button" onClick="location.href=\''.shop_item_url($row['it_id'], "_=".get_token()."&tab_tit=sit_use").'\'"  class=" btn01">후기보러가기</button>
+                                        </div>';
 								}
 								//echo "<span>작성완료</span>";
 							}
 							
 						} else {
-							echo "<span>작성기간 만료</span>";
+
+                            if ($isWriteUse == 'N') {
+                                echo "<span>작성기간 만료</span>";
+                            }elseif ($isWriteUse == 'Y') {
+                                echo "<span class=\"review-star\">";
+                                echo "<img src=\"". G5_URL ."/shop/img/s_star". $score .".png\">";
+                                echo "</span>";
+                                echo '<div class="sit_use_cmd" style="margin-top:10px;">
+                                             <button type="button" onClick="location.href=\''.shop_item_url($row['it_id'], "_=".get_token()."&tab_tit=sit_use").'\'"  class=" btn01">후기보러가기</button>
+                                        </div>';
+                            }
+							
 						}
 					} else {
 						echo '배송완료 후 <br>작성 가능합니다.';

@@ -90,21 +90,21 @@ if(defined('G5_THEME_SHOP_PATH')) {
 
 					$isWritable = 'N';
 
+                    // 후기 작성 했는지 체크
+                    $query = " SELECT * FROM g5_shop_cart WHERE od_id = '". $row['od_id'] ."' AND ct_status = '완료' ";
+                    $res = sql_query($query);
+                    for ($rr = 0; $rrow=sql_fetch_array($res); $rr++) {
+                        $query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $rrow['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $row['od_id'] ."' AND is_status = 1";
+                        $res2 = sql_fetch($query);
+                        $it_id = $rrow['it_id'];
+                        if ($res2['cnt'] > 0) {
+                            $isWritable = 'Y';
+                        }
+                    }
+
 					// 작성 가능일 때
-					if ($remainDay > 0) {
-						// 후기 작성 했는지 체크
-						$query = " SELECT * FROM g5_shop_cart WHERE od_id = '". $row['od_id'] ."' AND ct_status = '완료' ";
-						$res = sql_query($query);
-						for ($rr = 0; $rrow=sql_fetch_array($res); $rr++) {
-							$query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $rrow['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $row['od_id'] ."' AND is_status = 1";
-							$res2 = sql_fetch($query);
-							$it_id = $rrow['it_id'];
-							if ($res2['cnt'] == 0) {
-								$isWritable = 'Y';
-							}
-						}
-					
-						if ($isWritable == 'Y') {
+					if ($remainDay > 0) {                       
+						if ($isWritable == 'N') {
 							echo "작성만료 D-". $remainDay;
 							echo "<br><span><a href=\"/shop/orderItemList.php?od_id=". $row['od_id'] ."\" class=\"btn02 itemuse_form\">사용후기 쓰기</a></span>";
 						} else {
@@ -112,7 +112,13 @@ if(defined('G5_THEME_SHOP_PATH')) {
 						}
 						
 					} else {
-						echo "<span class=\"review-label expira\">작성기간 만료</span>";
+
+                        if ($isWritable == 'N') {
+                            echo "<span class=\"review-label expira\">작성기간 만료</span>";
+                        } else {
+                            echo "<span class=\"review-label complet\"><a href=\"/shop/orderItemList.php?od_id=". $row['od_id'] ."\" class=\"itemuse_form\">작성리뷰 보기</a></span>";
+                        }
+						
 					}
 				} elseif ($row['od_status'] == '입금' || $row['od_status'] == '준비' || $row['od_status'] == '배송') {
 					echo '배송완료 후 <br>작성 가능합니다.';

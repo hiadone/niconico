@@ -791,3 +791,73 @@ span.repur { color:#fff; background-color:#ed7d31; display:inline-block; font-si
 	font-size:12px;
 	padding:0 15px;
 }
+
+.btn {
+     display: inline-block; 
+     box-sizing: border-box; 
+     vertical-align: middle; 
+     border-radius: 5px; 
+     text-align: center; 
+}
+
+
+.btn .icon {
+    width: 1.1em;
+    vertical-align: sub;
+}
+
+.btn_full {
+    width: 100%;
+    height: 48px;
+    padding: 0;
+    line-height: 48px;
+     font-size: 16px; 
+}
+
+.btn_main_line {
+    border: 1px solid #7953d0;
+    background-color: #fff;
+    color: #414141;
+}
+
+.inp_review_img_contianer .has_review_img_container .review_img_thum {
+    width: -moz-fit-content;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+}
+.img_box {
+    display: inline-block;
+    font-size: 0;
+}
+
+.inp_review_img_contianer .has_review_img_container .review_img_thum .btn_del_img {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    width: 32px;
+    padding: 3px;
+}
+.btn_linkstyle {
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+.inp_review_img_contianer .has_review_img_container .review_img_thum .img {
+    width: 20.9444vw;
+    height: 20.9444vw;
+    max-width: 194px;
+    max-height: 194px;
+    /*margin: 0 4px;*/
+    box-sizing: border-box;
+    border: 1px solid rgba(219, 219, 219, 0.5);
+    border-radius: 5px;
+}
+.img_box .img {
+    width: 100%;
+    font-size: 12px;
+}

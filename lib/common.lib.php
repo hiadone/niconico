@@ -3864,5 +3864,12 @@ function option_array_checked($option, $arr=array()){
     return $checked;
 }
 
+function safe_replace_regex($str, $str_case=''){
 
+    if($str_case === 'time'){
+        return preg_replace('/[^0-9 _\-:]/i', '', $str);
+    }
+
+    return preg_replace('/[^0-9a-z_\-]/i', '', $str);
+}
 ?>

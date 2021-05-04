@@ -140,9 +140,18 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
     ?>
 		<?php
 			if ($row['is_type'] == 'photo') {
-		?>
+		      
+            $thumb = get_list_thumbnail('review',$row['is_id'], 100, 100, false, true);
+
+            if($thumb['src']) {
+                $img_content = '<img style="width:100%;" src="'.$thumb['src'].'" alt="'.$thumb['alt'].'" >';
+            } else {
+                $img_content = get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 100, 100);
+                // $img_content = '<span class="no_image">no image</span>';
+            }
+        ?>
             <li class="sit_use_li">
-                <span class="sit_thum"><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 100, 100); ?></span> 
+                <span class="sit_thum"><?php echo $img_content ?></span> 
 		<?php
 			} else {
 		?>
@@ -172,6 +181,26 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 				<button type="button" class="sit_use_li_title">내용보기 <i class="fa fa-caret-down" aria-hidden="true"></i></button>
 
 				<div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con">
+
+                    <?php
+
+                    if ($row['is_type'] == 'photo') {
+                        $file = get_file('review', $row['is_id']);
+                        // 파일 출력
+                        $v_img_count = $file['count'];
+                        if($v_img_count) {
+                            echo "<div id=\"bo_v_img\" style=\"width: 100%;overflow: hidden;\">\n";
+
+                            for ($i=0; $i<$file['count']; $i++) {  
+
+                                echo "<a href='".$file[$i]['path']."/".$file[$i]['file']."' target='_blank' class='view_image' ><img style='max-width:100%;height: auto;margin-bottom:10px;' src='".$file[$i]['path']."/".$file[$i]['file']."' alt='".$file[$i]['content']."' title='".$file[$i]['content']."'></a>";
+                            }
+
+                            echo "</div>\n";
+                        }
+                    }
+                    ?>
+
 					<div class="sit_use_p">
 						<?php echo $is_content; // 사용후기 내용 ?> 
 					</div>
@@ -179,7 +208,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 					<?php if ($is_admin || $row['mb_id'] == $member['mb_id']) { ?>
 					<div class="sit_use_cmd">
 						<a href="<?php echo $itemuse_form."&amp;is_id={$row['is_id']}&amp;w=u"; ?>" class="itemuse_form btn01" onclick="return false;">수정</a>
-						<a href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete btn01">삭제</a>
+						<a data-href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete btn01">삭제</a>
 					</div>
 					<?php } ?>
 
@@ -229,6 +258,31 @@ $(function(){
 
     $(".itemuse_delete").click(function(){
         if (confirm("정말 삭제 하시겠습니까?\n\n삭제후에는 되돌릴수 없습니다.")) {
+
+            $.ajax({
+                url : $(this).data('href'),
+                type : 'GET',
+                dataType : 'json',
+                success : function(data) {                
+                    if (data.error) {
+                        alert(data.error);
+                        return false;
+                    } else if (data.success) {
+                        alert(data.success);
+                        if(data.url){
+                            // if(w)
+                            //     location.href=data.url;
+                            // else
+                            location.reload();
+                            opener.location.reload();
+                            
+                        }
+                        return false;
+                        // $('.' + class).text(number_format(String(data.count)));
+                        // $('#btn-' + class).effect('highlight', {color : '#f37f60'}, 500);
+                    }
+                }
+            });
             return true;
         } else {
             return false;

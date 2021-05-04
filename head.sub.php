@@ -165,7 +165,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/font-awesome/css/font
 
 if(G5_IS_MOBILE) {
     add_javascript('<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>', 1); // overflow scroll 감지
-	add_javascript('<script src="'.G5_JS_URL.'/shortcut.common.js"></script>', 1); // 하이애드원 숏컷
+	// add_javascript('<script src="'.G5_JS_URL.'/shortcut.common.js"></script>', 1); // 하이애드원 숏컷
 }
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];

@@ -109,7 +109,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	        <!-- } 사용후기 끝 -->
 	
 	        <!-- 상품문의 시작 { -->
-	        <li id="sit_qa">
+	        <li id="sit_qa" >
 	            <h2>상품문의</h2>
 	            <div id="itemqa"><?php include_once(G5_SHOP_PATH.'/itemqa.php'); ?></div>
 	        </li>
@@ -199,7 +199,12 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 		 $(".sit_buy_inner").removeClass('active2')
 		 $("#sit_buy").css('vertical-align','top')
 		}
-	  })   
+	  });
+        <?php if($_GET['tab_tit'] === 'sit_use') {?>
+            $(".tab_tit>li>button[rel='#sit_use']").trigger('click');   
+        <?php } else { ?>
+            $(".tab_tit>li:first>button").trigger('click');   
+        <?php } ?>
 	});
 	</script>
 	<div id="sit_buy" class="fix">

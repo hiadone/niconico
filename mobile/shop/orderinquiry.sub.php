@@ -77,6 +77,7 @@ if(defined('G5_THEME_SHOP_PATH')) {
             <div class="inquiry_idtime">
                 <a href="<?php echo G5_SHOP_URL; ?>/orderinquiryview.php?od_id=<?php echo $row['od_id']; ?>&amp;uid=<?php echo $uid; ?>" class="idtime_link"><?php echo $row['od_id']; ?></a>
                 <span class="idtime_time"><?php echo substr($row['od_time'],2,25); ?></span>
+                <div class="inv_status"><?php echo $od_status; ?></div>
             </div>
             <div class="inquiry_name">
                 <?php echo $ct_name; ?>
@@ -99,21 +100,22 @@ if(defined('G5_THEME_SHOP_PATH')) {
 
 							$isWritable = 'N';
 
+                            $query = " SELECT * FROM g5_shop_cart WHERE od_id = '". $row['od_id'] ."' AND ct_status = '완료' ";
+                            $res = sql_query($query);
+                            for ($rr = 0; $rrow=sql_fetch_array($res); $rr++) {
+                                $query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $rrow['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $row['od_id'] ."' AND is_status = 1 ";
+                                $res2 = sql_fetch($query);
+                                $it_id = $rrow['it_id'];
+                                if ($res2['cnt'] > 0) {
+                                    $isWritable = 'Y';
+                                }
+                            }
+
 							// 작성 가능일 때
 							if ($remainDay > 0) {
 								// 후기 작성 했는지 체크
-								$query = " SELECT * FROM g5_shop_cart WHERE od_id = '". $row['od_id'] ."' ";
-								$res = sql_query($query);
-								for ($rr = 0; $rrow=sql_fetch_array($res); $rr++) {
-									$query = " SELECT count(*) as cnt FROM g5_shop_item_use WHERE it_id = '". $rrow['it_id'] ."' AND mb_id = '". $member['mb_id'] ."' AND od_id = '". $row['od_id'] ."' AND is_status = 1 ";
-									$res2 = sql_fetch($query);
-									$it_id = $rrow['it_id'];
-									if ($res2['cnt'] == 0) {
-										$isWritable = 'Y';
-									}
-								}
-							
-								if ($isWritable == 'Y') {
+                                 
+								if ($isWritable == 'N') {
 									
 									echo "<span class=\"review-btn\"><a href=\"/shop/orderItemList.php?od_id=". $row['od_id'] ."\" class=\"btn02 itemuse_form\">사용후기 쓰기</a></span><br>";
 									echo "작성만료 D-". $remainDay;
@@ -123,12 +125,20 @@ if(defined('G5_THEME_SHOP_PATH')) {
 								}
 								
 							} else {
-								echo "<span class=\"review-label expira\">작성기간 만료</span>";
+
+                                if ($isWritable == 'N') {
+                                    
+                                    echo "<span class=\"review-label expira\">작성기간 만료</span>";
+
+                                } else {
+                                    echo "<span class=\"review-label complet\"><a href=\"/shop/orderItemList.php?od_id=". $row['od_id'] ."\" class=\"itemuse_form\">작성리뷰 보기</a></span>";
+                                }
+								
 							}
 						}
 					?>
 				</div>
-				<div class="inv_status"><?php echo $od_status; ?></div>
+				
 				
             </div>
             <div class="inquiry_inv">

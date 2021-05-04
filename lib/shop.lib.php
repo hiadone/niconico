@@ -2100,13 +2100,11 @@ function check_itemuse_write($it_id, $mb_id, $close=true)
         $row = sql_fetch($sql);
 
         if($row['cnt'] == 0)
-        {
-            if($close)
-                alert_close('사용후기는 주문이 완료된 경우에만 작성하실 수 있습니다.');
-            else
-                alert('사용후기는 주문하신 상품의 상태가 완료인 경우에만 작성하실 수 있습니다.');
+        {            
+            return '사용후기는 주문이 완료된 경우에만 작성하실 수 있습니다.';            
         }
     }
+    return false;
 }
 
 

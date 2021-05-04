@@ -5,6 +5,7 @@ if(!defined('G5_IS_ADMIN') && defined('G5_THEME_PATH') && is_file(G5_THEME_PATH.
     require_once(G5_THEME_PATH.'/tail.sub.php');
     return;
 }
+
 ?>
 
 <?php if ($is_admin == 'super') {  ?><!-- <div style='float:left; text-align:center;'>RUN TIME : <?php echo get_microtime()-$begin_time; ?><br></div> --><?php }  ?>
