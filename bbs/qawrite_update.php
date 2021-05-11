@@ -136,7 +136,7 @@ $chars_array = array_merge(range(0,9), range('a','z'), range('A','Z'));
 // 가변 파일 업로드
 $file_upload_msg = '';
 $upload = array();
-for ($i=1; $i<=count($_FILES['bf_file']['name']); $i++) {
+for ($i=1; $i<=$upload_count; $i++) {
     $upload[$i]['file']     = '';
     $upload[$i]['source']   = '';
     $upload[$i]['del_check'] = false;
