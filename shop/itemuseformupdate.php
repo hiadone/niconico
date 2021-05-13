@@ -167,7 +167,7 @@ for ($i=0; $i<$upload_count; $i++) {
 
     if (is_uploaded_file($tmp_file)) {
         // 관리자가 아니면서 설정한 업로드 사이즈보다 크다면 건너뜀
-        if (!$is_admin && $filesize > (1024 * 25)) {
+        if (!$is_admin && $filesize > (1024 * 1024 * 25)) {
             $file_upload_msg .= '\"'.$filename.'\" 파일의 용량('.number_format($filesize).' 바이트)이 게시판에 설정('.number_format(25).' MB) 값보다 크므로 업로드 하지 않습니다.\\n';
             continue;
         }
