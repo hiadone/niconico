@@ -7,7 +7,7 @@ $sql = " SELECT * FROM {$g5['g5_shop_default_table']} ";
 $default = sql_fetch($sql);
 
 // if ($default['de_autoCompleteShipDay'] > 0) {
-	$sql = " SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '배송' ";
+	$sql = " SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '배송' and od_invoice !='' ";
 
 	$result = sql_query($sql);
     for ($i=0; $row=sql_fetch_array($result); $i++) {
@@ -16,7 +16,7 @@ $default = sql_fetch($sql);
 
         $url = 'https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/'.$row['od_invoice'];
 
-        // $url = 'https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/381546375821';
+        // $url = 'https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/381546375843';
         echo $row['od_invoice'];
         echo "<br>";
          
@@ -28,6 +28,8 @@ $default = sql_fetch($sql);
         curl_close($ch);
 
         $obj = json_decode($res);
+
+
         echo trim($obj->state->text);
         echo "<br>";
 
