@@ -6,8 +6,8 @@ include_once(G5_LIB_PATH.'/etc.lib.php');
 $sql = " SELECT * FROM {$g5['g5_shop_default_table']} ";
 $default = sql_fetch($sql);
 
-// if ($default['de_autoCompleteShipDay'] > 0) {
-    $sql = " SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '배송' and od_invoice !='' ";
+if ($default['de_autoCompleteShipDay'] > 0) {
+    $sql = " SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '배송'  ";
 
     $result = sql_query($sql);
     for ($i=0; $row=sql_fetch_array($result); $i++) {
@@ -33,7 +33,7 @@ $default = sql_fetch($sql);
         
         
     }
-// }
+}
 
 
 
