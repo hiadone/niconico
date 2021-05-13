@@ -937,7 +937,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <tr>
                     <th scope="row"><label for="od_tel"><span class="sound_only">주문하신 분 </span>전화번호</label></th>
-                    <td><input type="text" name="od_tel" value="<?php echo get_text($od['od_tel']); ?>" id="od_tel" required class="frm_input required"></td>
+                    <td><input type="text" name="od_tel" value="<?php echo get_text($od['od_tel']); ?>" id="od_tel"  class="frm_input "></td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="od_hp"><span class="sound_only">주문하신 분 </span>핸드폰</label></th>
@@ -996,7 +996,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 </tr>
                 <tr>
                     <th scope="row"><label for="od_b_tel"><span class="sound_only">받으시는 분 </span>전화번호</label></th>
-                    <td><input type="text" name="od_b_tel" value="<?php echo get_text($od['od_b_tel']); ?>" id="od_b_tel" required class="frm_input required"></td>
+                    <td><input type="text" name="od_b_tel" value="<?php echo get_text($od['od_b_tel']); ?>" id="od_b_tel"  class="frm_input "></td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="od_b_hp"><span class="sound_only">받으시는 분 </span>핸드폰</label></th>

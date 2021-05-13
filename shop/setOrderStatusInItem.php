@@ -1,5 +1,5 @@
 <?php
-include_once('/home/niconicomall/www/common.php');
+include_once('./_common.php');
 
 $sql = " select
 		b.it_id,

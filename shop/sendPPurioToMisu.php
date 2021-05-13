@@ -1,5 +1,5 @@
 <?php
-include_once('/home/niconicomall/www/common.php');
+include_once('./_common.php');
 include_once(G5_LIB_PATH.'/etc.lib.php');
 
 $searchDate = date("Y-m-d", strtotime("3 days ago"));

@@ -717,10 +717,10 @@ if( function_exists('pg_setting_check') ){
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="de_point_days">주문완료 포인트</label></th>
+            <th scope="row"><label for="de_point_days">주문완료(배송완료) 포인트</label></th>
             <td>
-                <?php echo help("주문자가 회원일 경우에만 주문완료시 포인트를 지급합니다. 주문취소, 반품 등을 고려하여 포인트를 지급할 적당한 기간을 입력하십시오. (기본값은 7일)\n0일로 설정하는 경우에는 주문완료와 동시에 포인트를 지급합니다."); ?>
-                주문 완료 <input type="text" name="de_point_days" value="<?php echo $default['de_point_days']; ?>" id="de_point_days" class="frm_input" size="2"> 일 이후에 포인트를 지급
+                <?php echo help("주문자가 회원일 경우에만 주문완료시 포인트를 지급합니다. 주문취소, 반품 등을 고려하여 포인트를 지급할 적당한 기간을 입력하십시오. (기본값은 7일)\n0일로 설정하는 경우에는 주문완료(배송완료)와 동시에 포인트를 지급합니다."); ?>
+                주문완료(배송완료) <input type="text" name="de_point_days" value="<?php echo $default['de_point_days']; ?>" id="de_point_days" class="frm_input" size="2"> 일 이후에 포인트를 지급
             </td>
         </tr>
         <tr>

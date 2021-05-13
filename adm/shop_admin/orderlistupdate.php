@@ -14,6 +14,7 @@ define("_ORDERMAIL_", true);
 $sms_count = 0;
 $sms_messages = array();
 
+
 for ($i=0; $i<count($_POST['chk']); $i++)
 {
     // 실제 번호를 넘김

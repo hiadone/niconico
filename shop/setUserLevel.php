@@ -1,5 +1,5 @@
 <?php
-include_once('/home/niconicomall/www/common.php');
+include_once('./_common.php');
 
 
 //$lastDuration_s = date("Y-m", strtotime('2 months ago')) ."-01 00:00:00";
