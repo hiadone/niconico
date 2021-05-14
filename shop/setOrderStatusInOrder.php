@@ -18,7 +18,7 @@ $default = sql_fetch($sql);
 
             // $url = 'https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/381546375843';
             echo $row['od_invoice'];
-            echo "<br>";
+            echo "\n";
              
             
             $ch = curl_init();
@@ -31,8 +31,8 @@ $default = sql_fetch($sql);
 
 
             echo trim($obj->state->text);
-            echo "<br>";
-
+            echo "\n";
+            echo "\n";
             if(trim($obj->state->text) === '배달완료'){
                 change_status($row['od_id'], '배송', '완료');
 
