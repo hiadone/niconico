@@ -1,5 +1,5 @@
 <?php
-include_once('/home/niconicomall/www/shop/_common.php');
+include_once('/home/niconicomall/www/common.php');
 include_once(G5_PATH.'/adm/shop_admin/admin.shop.lib.php');
 include_once(G5_LIB_PATH.'/etc.lib.php');
 
