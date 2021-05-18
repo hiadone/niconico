@@ -30,7 +30,42 @@ function replaceStrPPurio($content) {
 	return $content;
 }
 
-function sendPPurio($phoneNumber, $content, $type, $buttonType = 1) {
+function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
+    $body = array("at" => array("senderkey"=>"ca4ce95f12699f2ad036fa494e8a2afea58a6e95","templatecode"=>$type,"message"=>$content,"button"=>$button));
+
+    $data = array();
+    $data["account"] = "niconicomall";
+    $data["refkey"] = $cmid;
+    $data["type"] = "at";
+    $data["from"] = "07042836537";
+    $data["to"] = $phoneNumber;
+    $data["content"] = $body;    
+
+    $json_data = json_encode($data, JSON_UNESCAPED_SLASHES);
+    //$url = 'https://api.bizppurio.com/v2/message';
+    $url = 'https://api.bizppurio.com/v2/message';
+    $oCurl = curl_init();
+    curl_setopt($oCurl,CURLOPT_URL,$url);
+    curl_setopt($oCurl,CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($oCurl,CURLOPT_NOSIGNAL, 1);
+    curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($oCurl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($oCurl, CURLOPT_HTTPHEADER,array('Accept: application/json', 'Content-Type: application/json'));
+    curl_setopt($oCurl, CURLOPT_VERBOSE, true);
+    curl_setopt($oCurl, CURLOPT_POSTFIELDS, $json_data);
+    curl_setopt($oCurl, CURLOPT_TIMEOUT, 3);
+    $response = curl_exec($oCurl);
+    $curl_errno = curl_errno($oCurl);
+    $curl_error = curl_error($oCurl);
+    curl_close($oCurl);
+
+    return json_decode($response);
+    
+}
+
+function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice = '') {
+
 	if ($buttonType == 'none') {
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
@@ -43,6 +78,8 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1) {
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
 		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button2.json')";
+
+        $button = array(array("name"=>"채널추가","type"=>"AC"));
 	} 
 	// 채널추가와 쇼핑몰 바로가기가 있는 경우
 	elseif ($buttonType == 3) {	
@@ -50,13 +87,20 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1) {
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
 		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button3.json')";
+
+        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
 	} 
 	// 채널추가와 배송조회 바로가기가 있는 경우
 	elseif ($buttonType == 4) {	
+        $cmid = date("YmdHis", time());
+        
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
-		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button4.json')";
+
+        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://www.shiptrack.co.kr/","url_pc"=>"https://www.shiptrack.co.kr/"));
+
 	} 
 	// 쇼핑몰 바로가기만 있는 경우
 	elseif ($buttonType == 5) {	
@@ -64,16 +108,40 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1) {
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
 		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button5.json')";
+
+        $button = array(array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
 	} 
+    // 사용후기와 배송조회 바로가기가 있는 경우
+    elseif ($buttonType == 6) { 
+        $cmid = date("YmdHis", time());
+        
+        $query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
+        MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
+        VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+        '". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button4.json')";
+
+        $button = array(array("name"=>"사용후기 쓰러가기","type"=>"WL","url_mobile"=>"https://bit.ly/3tW6pyy","url_pc"=>"https://bit.ly/3tW6pyy"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice."/","url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice."/"));
+
+    } 
 	// 쇼핑몰 놀러가기만 있는 경우
 	else { 
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
 		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button.json')";
+        $button = array(array("name"=>"쇼핑몰 놀러가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
 	}
 	//sql_query($query, true);
 	sql_query($query);
+
+    $res = ppurio_send($cmid,$phoneNumber,$content,$type,$button);
+
+        
+    $sql = " update BIZ_MSG
+                set CALL_STATUS      = '".$res->code."'
+                where CMID = '".$res->refkey."' ";
+    
+    sql_query($sql);
 }
 
 function format_phone($phone){
