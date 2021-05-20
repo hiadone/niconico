@@ -41,6 +41,7 @@ function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
     $data["to"] = $phoneNumber;
     $data["content"] = $body;    
 
+    // print_r2($data);
     $json_data = json_encode($data, JSON_UNESCAPED_SLASHES);
     //$url = 'https://api.bizppurio.com/v2/message';
     $url = 'https://api.bizppurio.com/v2/message';
@@ -59,24 +60,25 @@ function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
     $curl_errno = curl_errno($oCurl);
     $curl_error = curl_error($oCurl);
     curl_close($oCurl);
-
+    // print_r2($response);
     return json_decode($response);
     
 }
 
 function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice = '') {
 
+    $cmid = date("YmdHis", time());
 	if ($buttonType == 'none') {
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
-		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', '')";
 	} 
 	// 채널추가만 있는 경우
 	elseif ($buttonType == 2) {	
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
-		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button2.json')";
 
         $button = array(array("name"=>"채널추가","type"=>"AC"));
@@ -85,7 +87,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
 	elseif ($buttonType == 3) {	
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
-		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button3.json')";
 
         $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
@@ -106,7 +108,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
 	elseif ($buttonType == 5) {	
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
-		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button5.json')";
 
         $button = array(array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
@@ -127,7 +129,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
 	else { 
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
 		MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
-		VALUES (6, '". date("YmdHis", time()) ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button.json')";
         $button = array(array("name"=>"쇼핑몰 놀러가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
 	}
