@@ -961,7 +961,7 @@ input, textarea {
 #main_bn:after {display:block;visibility:hidden;clear:both;content:""}
 #main_bn .slide-wrap {padding:0;margin:0}
 #main_bn .slide-wrap img {max-width:100%; height:auto}
-#main_bn .owl_pager {position:absolute; bottom:2rem; left:0; width:100%; text-align:center; z-index:1}
+#main_bn .owl_pager {position:absolute; bottom:0.1rem; left:0; width:100%; text-align:center; z-index:1}
 #main_bn .owl_pager ul:after {display:block;visibility:hidden;clear:both;content:""}
 #main_bn .owl_pager li {display:inline-block; overflow:hidden; width:14px; height:14px; margin:0 3px}
 #main_bn .owl_pager li a {display:block; overflow:hidden; width:14px; height:14px; border:2px solid #b7b7b7; background:none; text-indent:-999em;}
