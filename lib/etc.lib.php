@@ -40,7 +40,7 @@ function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
     $data["from"] = "07042836537";
     $data["to"] = $phoneNumber;
     $data["content"] = $body;    
-
+    
     // print_r2($data);
     $json_data = json_encode($data, JSON_UNESCAPED_SLASHES);
     //$url = 'https://api.bizppurio.com/v2/message';
@@ -122,7 +122,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
         VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
         '". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button4.json')";
 
-        $button = array(array("name"=>"사용후기 쓰러가기","type"=>"WL","url_mobile"=>"https://bit.ly/3tW6pyy","url_pc"=>"https://bit.ly/3tW6pyy"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice."/","url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice."/"));
+        $button = array(array("name"=>"사용후기 쓰러가기","type"=>"WL","url_mobile"=>"https://bit.ly/3tW6pyy","url_pc"=>"https://bit.ly/3tW6pyy"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice,"url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice));
 
     } 
 	// 쇼핑몰 놀러가기만 있는 경우

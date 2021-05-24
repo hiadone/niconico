@@ -170,12 +170,25 @@ for ($i=0; $i<$count_post_chk; $i++)
 
 			// 뿌리오 발송
 			if ($receive_number) {
-				$content = getTemplate('ship_done_3');
+				$content = getTemplate('ship_done_6');
 				$content = replaceStrPPurio($content);
 
-				$content = str_replace("#{order_name}", $od['od_name'], $content);
+                $it_list='';
 
-				sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_3', 4);
+				
+
+                $sql = " select * from {$g5['g5_shop_cart_table']} where od_id = '$od_id' ";
+                $res2 = sql_query($sql);
+
+                for ($i=0; $row2=sql_fetch_array($res2); $i++)
+                {
+                    $it_list .= $row2['it_list'] . " : ". $row2['ct_qty']. "개\n";
+                }
+
+                $content = str_replace("#{it_list}", $it_list, $content);
+                $content = str_replace("#{order_name}", $od['od_name'], $content);
+                
+				sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6);
 			}
             break;
 
