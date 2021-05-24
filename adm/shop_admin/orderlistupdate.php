@@ -188,7 +188,7 @@ for ($i=0; $i<$count_post_chk; $i++)
                 $content = str_replace("#{it_list}", $it_list, $content);
                 $content = str_replace("#{order_name}", $od['od_name'], $content);
                 
-				sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6);
+				sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6,$od['od_invoice']);
 			}
             break;
 

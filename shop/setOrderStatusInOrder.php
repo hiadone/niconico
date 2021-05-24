@@ -8,21 +8,21 @@ include_once(G5_LIB_PATH.'/etc.lib.php');
 
 
 
-// $receive_number = '';
-// $receive_number = '01075060206';   
+$receive_number = '';
+$receive_number = '01075060206';   
 
-// if ($receive_number) {
+if ($receive_number) {
 
-//     $content = getTemplate('ship_done_6');
-//     $content = replaceStrPPurio($content);
+    $content = getTemplate('ship_done_6');
+    $content = replaceStrPPurio($content);
 
-//     $content = str_replace("#{order_name}", $row['od_name'], $content);
+    $content = str_replace("#{order_name}", $row['od_name'], $content);
 
-//     sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6);
-//     // sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_2', 4);
-// }
+    sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6);
+    // sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_2', 4);
+}
 
-// exit;
+exit;
 $sql = " SELECT * FROM {$g5['g5_shop_default_table']} ";
 $default = sql_fetch($sql);
 
@@ -59,7 +59,7 @@ $default = sql_fetch($sql);
                 $receive_number = '';
                 $receive_number = preg_replace("/[^0-9]/", "", $row['od_hp']);   
 
-                $sql = " select * from {$g5['g5_shop_cart_table']} where od_id = '$od_id' ";
+                $sql = " select * from {$g5['g5_shop_cart_table']} where od_id = '$row['od_id']' ";
                 $res2 = sql_query($sql);
 
                 for ($i=0; $row2=sql_fetch_array($res2); $i++)
@@ -74,7 +74,7 @@ $default = sql_fetch($sql);
                     $content = str_replace("#{order_name}", $row['od_name'], $content);
                     $content = str_replace("#{it_list}", $it_list, $content);
 
-                    sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6);
+                    sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6,$row['od_invoice']);
                 }
             }
         

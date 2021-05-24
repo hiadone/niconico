@@ -437,7 +437,7 @@ if ($_POST['ct_status'] == "완료") {
         $content = str_replace("#{it_list}", $it_list, $content);
         $content = str_replace("#{order_name}", $od['od_name'], $content);
 
-		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'ship_done_6', 6);
+		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'ship_done_6', 6,$od['od_invoice']);
 	}
 } elseif ($_POST['ct_status'] == "배송") {
 	if ($od['od_hp']) {
