@@ -59,6 +59,18 @@ for ($i=0; $i<$count_post_chk; $i++)
             change_status($od_id, '주문', '입금');
             order_update_receipt($od_id);
 
+            // 뿌리오 발송
+            if ($receive_number) {
+                $content = getTemplate('pay_done_over_2');
+                $content = replaceStrPPurio($content);
+
+                $content = str_replace("#{order_name}", $od['od_name'], $content);
+                $content = str_replace("#{orderNo}", $od_id, $content);
+                $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
+
+                sendPPurio(str_replace("-", "", $receive_number), $content, 'pay_done_over_2', 2);
+            }
+            
             // SMS
             if($config['cf_sms_use'] == 'icode' && $send_sms && $default['de_sms_use4']) {
                 $sms_contents = conv_sms_contents($od_id, $default['de_sms_cont4']);
@@ -80,17 +92,7 @@ for ($i=0; $i<$count_post_chk; $i++)
         case '입금' :
             if ($change_status != '준비') continue 2;
             change_status($od_id, '입금', '준비');
-			// 뿌리오 발송
-			if ($receive_number) {
-				$content = getTemplate('pay_done_over_2');
-				$content = replaceStrPPurio($content);
-
-				$content = str_replace("#{order_name}", $od['od_name'], $content);
-				$content = str_replace("#{orderNo}", $od_id, $content);
-				$content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
-
-				sendPPurio(str_replace("-", "", $receive_number), $content, 'pay_done_over_2', 2);
-			}
+			
 
             break;
 
