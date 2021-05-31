@@ -148,16 +148,16 @@ if($_FILES['excelfile']['tmp_name']) {
 		// 뿌리오 발송
 		$receive_number = preg_replace("/[^0-9]/", "", $od['od_hp']);	// 수신자번호
 		if ($receive_number) {
-			$content = getTemplate('ship_start_4');
+			$content = getTemplate('ship_start_4_');
 			$content = replaceStrPPurio($content);
 
 			$content = str_replace("#{order_name}", $od['od_name'], $content);
 			$content = str_replace("#{orderNo}", $od_id, $content);
 			$content = str_replace("#{deliveryName}", $od['od_b_name'], $content);
-			$content = str_replace("#{deliveryCompany}", $od['od_delivery_company'], $content);
-			$content = str_replace("#{invoiceNo}", $od['od_invoice'], $content);
+			$content = str_replace("#{deliveryCompany}", $od_delivery_company, $content);
+			$content = str_replace("#{invoiceNo}", $od_invoice, $content);
 
-			sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_start_4', 4);
+			sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_start_4_', 4,$od_invoice);
 		}
     }
 }

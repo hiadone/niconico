@@ -93,7 +93,17 @@ for ($i=0; $i<$count_post_chk; $i++)
             if ($change_status != '준비') continue 2;
             change_status($od_id, '입금', '준비');
 			
+            // 뿌리오 발송
+            if ($receive_number) {
+                $content = getTemplate('product_ready_1_');
+                $content = replaceStrPPurio($content);
 
+                $content = str_replace("#{order_name}", $od['od_name'], $content);
+                
+
+                sendPPurio(str_replace("-", "", $receive_number), $content, 'product_ready_1_', 2);
+            }
+            
             break;
 
         case '준비' :
@@ -133,7 +143,7 @@ for ($i=0; $i<$count_post_chk; $i++)
 
 			// 뿌리오 발송
 			if ($receive_number) {
-				$content = getTemplate('ship_start_4');
+				$content = getTemplate('ship_start_4_');
 				$content = replaceStrPPurio($content);
 
 				$content = str_replace("#{order_name}", $od['od_name'], $content);
@@ -142,7 +152,7 @@ for ($i=0; $i<$count_post_chk; $i++)
 				$content = str_replace("#{deliveryCompany}", $od['od_delivery_company'], $content);
 				$content = str_replace("#{invoiceNo}", $od['od_invoice'], $content);
 
-				sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_start_4', 4);
+				sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_start_4_', 4,$od['od_invoice']);
 			}
 
             break;

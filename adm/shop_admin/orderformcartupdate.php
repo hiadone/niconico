@@ -441,7 +441,7 @@ if ($_POST['ct_status'] == "완료") {
 	}
 } elseif ($_POST['ct_status'] == "배송") {
 	if ($od['od_hp']) {
-		$content = getTemplate('ship_start_4');
+		$content = getTemplate('ship_start_4_');
 		$content = replaceStrPPurio($content);
 
 		$content = str_replace("#{order_name}", $od['od_name'], $content);
@@ -450,7 +450,7 @@ if ($_POST['ct_status'] == "완료") {
 		$content = str_replace("#{deliveryCompany}", $od['od_delivery_company'], $content);
 		$content = str_replace("#{invoiceNo}", $od['od_invoice'], $content);
 
-		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'ship_start_4', 4);
+		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'ship_start_4_', 4,$od['od_invoice']);
 	}
 } elseif ($_POST['ct_status'] == "취소") {
 	if ($od['od_hp']) {

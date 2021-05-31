@@ -101,7 +101,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
 		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button4.json')";
 
-        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://www.shiptrack.co.kr/","url_pc"=>"https://www.shiptrack.co.kr/"));
+        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice,"url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice));
 
 	} 
 	// 쇼핑몰 바로가기만 있는 경우
