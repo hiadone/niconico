@@ -42,7 +42,7 @@ function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
     $data["to"] = $phoneNumber;
     $data["content"] = $body;    
     
-    print_r2($data);
+    // print_r2($data);
     $json_data = json_encode($data, JSON_UNESCAPED_SLASHES);
     //$url = 'https://api.bizppurio.com/v2/message';
     $url = 'https://api.bizppurio.com/v2/message';
@@ -61,7 +61,7 @@ function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
     $curl_errno = curl_errno($oCurl);
     $curl_error = curl_error($oCurl);
     curl_close($oCurl);
-    print_r2($response);
+    // print_r2($response);
     return json_decode($response);
     
 }
