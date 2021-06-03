@@ -65,7 +65,7 @@ function ppurio_send($cmid,$phoneNumber,$content,$type,$button = array()) {
     
 }
 
-function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice = '') {
+function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$ext_val = '') {
 
     $cmid = date("YmdHis", time());
 	if ($buttonType == 'none') {
@@ -101,7 +101,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
 		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button4.json')";
 
-        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice,"url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice));
+        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$ext_val,"url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$ext_val));
 
 	} 
 	// 쇼핑몰 바로가기만 있는 경우
@@ -111,7 +111,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
 		VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
 		'". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button5.json')";
 
-        $button = array(array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://bit.ly/2SUtcdy","url_pc"=>"https://bit.ly/2SUtcdy"));
+        $button = array(array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://niconicomall.com/bbs/qaview.php?qa_id=".$ext_val,"url_pc"=>"https://niconicomall.com/bbs/qaview.php?qa_id=".$ext_val));
 	} 
     // 사용후기와 배송조회 바로가기가 있는 경우
     elseif ($buttonType == 6) { 
@@ -122,7 +122,7 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$od_invoice =
         VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
         '". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button4.json')";
 
-        $button = array(array("name"=>"사용후기 쓰러가기","type"=>"WL","url_mobile"=>"https://bit.ly/3tW6pyy","url_pc"=>"https://bit.ly/3tW6pyy"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice,"url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$od_invoice));
+        $button = array(array("name"=>"사용후기 쓰러가기","type"=>"WL","url_mobile"=>"https://bit.ly/3tW6pyy","url_pc"=>"https://bit.ly/3tW6pyy"),array("name"=>"배송조회","type"=>"WL","url_mobile"=>"https://track.shiptrack.co.kr/cjkorex/".$ext_val,"url_pc"=>"https://track.shiptrack.co.kr/cjkorex/".$ext_val));
 
     } 
 	// 쇼핑몰 놀러가기만 있는 경우

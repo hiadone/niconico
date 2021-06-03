@@ -426,12 +426,12 @@ if($config['cf_sms_use'] == 'icode' && $qaconfig['qa_use_sms']) {
 // 뿌리오 발송
 if($w == 'a' && trim($write['qa_hp'])) {	
 	$hp = $write['qa_hp'];
-	$content = getTemplate('member_cs_2');
+	$content = getTemplate('member_cs_2_');
 	$content = replaceStrPPurio($content);
 
 	$content = str_replace("#{mbr_name}", $write['qa_name'], $content);
 
-	sendPPurio(str_replace("-", "", $hp), addslashes($content), 'member_cs_2', 5);
+	sendPPurio(str_replace("-", "", $hp), addslashes($content), 'member_cs_2_', 5,$write['qa_parent']);
 }
 
 
