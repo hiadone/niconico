@@ -112,6 +112,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <th scope="col"><?php echo subject_sort_link('it_name'); ?>상품명</a></th>
         <th scope="col"><?php echo subject_sort_link('iq_subject'); ?>질문</a></th>
         <th scope="col"><?php echo subject_sort_link('mb_name'); ?>이름</a></th>
+        <th scope="col"><?php echo subject_sort_link('iq_time'); ?>날짜</a></th>
         <th scope="col"><?php echo subject_sort_link('iq_answer'); ?>답변</a></th>
         <th scope="col">관리</th>
     </tr>
@@ -150,7 +151,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
             </div>
         </td>
         <td class="td_name"><?php echo $name; ?></td>
+        <td ><?php echo $row['it_time']; ?></td>
         <td class="td_boolean"><?php echo $answer; ?></td>
+
         <td class="td_mng td_mng_s">
             <a href="./itemqaform.php?w=u&amp;iq_id=<?php echo $row['iq_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo get_text($row['iq_subject']); ?> </span>수정</a>
         </td>
