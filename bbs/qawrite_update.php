@@ -431,7 +431,7 @@ if($w == 'a' && trim($write['qa_hp'])) {
 
 	$content = str_replace("#{mbr_name}", $write['qa_name'], $content);
 
-	sendPPurio(str_replace("-", "", $hp), addslashes($content), 'member_cs_2_', 5,$write['qa_parent']);
+	sendPPurio(str_replace("-", "", $hp), addslashes($content), 'member_cs_2_', 7,$write['qa_parent']);
 }
 
 
