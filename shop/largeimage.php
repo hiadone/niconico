@@ -6,7 +6,7 @@ if (G5_IS_MOBILE) {
     return;
 }
 
-$it_id = get_search_string(trim($_GET['it_id']));
+$it_id = isset($_GET['it_id']) ? get_search_string(trim($_GET['it_id'])) : '';
 $no = (isset($_GET['no']) && $_GET['no']) ? (int) $_GET['no'] : 1;
 
 $row = get_shop_item($it_id, true);
