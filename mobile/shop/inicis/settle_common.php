@@ -1,5 +1,6 @@
 <?php
 include_once('./_common.php');
+include_once(G5_LIB_PATH.'/etc.lib.php');
 
 //*******************************************************************************
 // FILE NAME : mx_rnoti.php
@@ -298,13 +299,13 @@ if($PGIP == "211.219.96.165" || $PGIP == "118.129.210.25" || $PGIP == "183.109.7
                 $od_id = $P_OID;
 
             // 주문정보 체크
-            $sql = " select count(od_id) as cnt
+            $sql = " select *
                         from {$g5['g5_shop_order_table']}
                         where od_id = '$od_id'
                           and od_status = '주문' ";
-            $row = sql_fetch($sql);
+            $od = sql_fetch($sql);
 
-            if($row['cnt'] == 1) {
+            if($od) {
                 // 미수금 정보 업데이트
                 $info = get_order_info($od_id);
 
@@ -321,6 +322,17 @@ if($PGIP == "211.219.96.165" || $PGIP == "118.129.210.25" || $PGIP == "183.109.7
                                 set ct_status = '입금'
                                 where od_id = '$od_id' ";
                     sql_query($sql, FALSE);
+                }
+
+                if($od['od_hp']){
+                    $content = getTemplate('pay_done_over_2');
+                    $content = replaceStrPPurio($content);
+
+                    $content = str_replace("#{order_name}", $od['od_name'], $content);
+                    $content = str_replace("#{orderNo}", $od_id, $content);
+                    $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
+
+                    sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 2);
                 }
             }
         }

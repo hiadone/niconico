@@ -16,8 +16,7 @@ $INIpayLog  = false;                  // 로그를 기록하려면 true 로 수�
 //**********************************************************************************
 
 $PG_IP = $_SERVER['REMOTE_ADDR'];
-$logfile = fopen( $INIpayHome . "/log/result.log", "a+" );
-fwrite( $logfile,"PG_IP : ".$PG_IP."\r\n");
+
 if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.37.16" || $PG_IP == "203.238.37.25" || $PG_IP == "39.115.212.9" )  //PG에서 보냈는지 IP로 체크
 {
         $msg_id = $msg_id;             //메세지 타입
@@ -55,7 +54,7 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
         // 입금결과 처리
         $sql = " select pp_id, od_id from {$g5['g5_shop_personalpay_table']} where pp_id = '$no_oid' and pp_app_no = '$no_vacct' ";
         $row = sql_fetch($sql);
-        fwrite( $logfile,"sql : ".$sql."\r\n");
+
         $result = false;
         $receipt_time = $dt_trans.$tm_trans;
 
@@ -88,7 +87,7 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
                         and od_app_no = '$no_vacct' ";
             $result = sql_query($sql, FALSE);
         }
-        fwrite( $logfile,"result : ".$result."\r\n");
+
         if($result) {
             if($row['od_id'])
                 $od_id = $row['od_id'];
@@ -102,8 +101,7 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
                           and od_status = '주문' ";
             $od = sql_fetch($sql);
             
-            fwrite( $logfile,"sql : ".$sql."\r\n");
-            fwrite( $logfile,"od : ".$od."\r\n");
+
             if($od) {
                 // 미수금 정보 업데이트
                 $info = get_order_info($od_id);
@@ -114,18 +112,16 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
                     $sql .= " , od_status = '입금' ";
                 $sql .= " where od_id = '$od_id' ";
                 sql_query($sql, FALSE);
-                fwrite( $logfile,"sql : ".$sql."\r\n");
+
                 // 장바구니 상태변경
                 if($info['od_misu'] == 0) {
                     $sql = " update {$g5['g5_shop_cart_table']}
                                 set ct_status = '입금'
                                 where od_id = '$od_id' ";
                     sql_query($sql, FALSE);
-                    fwrite( $logfile,"sql : ".$sql."\r\n");
                 }
 
                 if($od['od_hp']){
-                    fwrite( $logfile,"od_hp : ".$od['od_hp']."\r\n");
                     $content = getTemplate('pay_done_over_2');
                     $content = replaceStrPPurio($content);
 
@@ -197,5 +193,4 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
 //*************************************************************************************
 
 }
-fclose( $logfile );
 ?>
