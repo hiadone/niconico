@@ -1,6 +1,7 @@
 <?php
 include_once('./_common.php');
 include_once(G5_LIB_PATH.'/etc.lib.php');
+
 //**********************************************************************************
 //이니시스가 전달하는 가상계좌이체의 결과를 수신하여 DB 처리 하는 부분 입니다.
 //필요한 파라메터에 대한 DB 작업을 수행하십시오.
@@ -120,14 +121,16 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
                     sql_query($sql, FALSE);
                 }
 
-                $content = getTemplate('pay_done_over_2');
-                $content = replaceStrPPurio($content);
+                if($od['od_hp']){
+                    $content = getTemplate('pay_done_over_2');
+                    $content = replaceStrPPurio($content);
 
-                $content = str_replace("#{order_name}", $od['od_name'], $content);
-                $content = str_replace("#{orderNo}", $od_id, $content);
-                $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
+                    $content = str_replace("#{order_name}", $od['od_name'], $content);
+                    $content = str_replace("#{orderNo}", $od_id, $content);
+                    $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
 
-                sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 2);
+                    sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 2);
+                }
             }
         }
 
