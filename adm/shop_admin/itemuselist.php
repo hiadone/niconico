@@ -118,7 +118,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <th scope="col"><?php echo subject_sort_link("is_time"); ?>등록일</a></th>
         <th scope="col"><?php echo subject_sort_link("is_subject"); ?>제목</a></th>
         <th scope="col"><?php echo subject_sort_link("is_score"); ?>평점</a></th>
-        <th scope="col"><?php echo subject_sort_link("is_reply_subject"); ?>답변등록일</a></th>
+        <th scope="col"><?php echo subject_sort_link("is_reply_date"); ?>답변등록일</a></th>
         <th scope="col"><?php echo subject_sort_link("is_confirm"); ?>확인</a></th>
         <th scope="col">관리</th>
     </tr>
