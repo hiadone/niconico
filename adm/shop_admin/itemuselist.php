@@ -115,8 +115,10 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <th scope="col"><?php echo subject_sort_link("it_name"); ?>상품명</a></th>
         <th scope="col"><?php echo subject_sort_link("mb_id"); ?>아이디</a></th>
 		<th scope="col"><?php echo subject_sort_link("mb_name"); ?>이름</a></th>
+        <th scope="col"><?php echo subject_sort_link("is_time"); ?>등록일</a></th>
         <th scope="col"><?php echo subject_sort_link("is_subject"); ?>제목</a></th>
         <th scope="col"><?php echo subject_sort_link("is_score"); ?>평점</a></th>
+        <th scope="col"><?php echo subject_sort_link("is_reply_subject"); ?>답변등록일</a></th>
         <th scope="col"><?php echo subject_sort_link("is_confirm"); ?>확인</a></th>
         <th scope="col">관리</th>
     </tr>
@@ -141,6 +143,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <td class="td_left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?><?php echo cut_str($row['it_name'],30); ?></a></td>
         <td class="td_name"><?php echo $row['mb_id']; ?></td>
 		<td class="td_name"><?php echo $name; ?></td>
+        <td class="td_mng"><?php echo $row['is_time']; ?></td>
         <td class="sit_use_subject td_left">
             <a href="#" class="use_href" onclick="return false;" target="<?php echo $i; ?>"><?php echo get_text($row['is_subject']); ?><span class="tit_op">열기</span></a>
             <div id="use_div<?php echo $i; ?>" class="use_div" style="display:none;">
@@ -157,6 +160,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
             <option value="1" <?php echo get_selected($row['is_score'], "1"); ?>>매우불만</option>
             </select>
         </td>
+        <td class="td_mng"><?php echo $row['is_reply_date'] === '0000-00-00 00:00:00' ? '-':$row['is_reply_date']  ?></td>
         <td class="td_chk2">
             <label for="confirm_<?php echo $i; ?>" class="sound_only">확인</label>
             <input type="checkbox" name="is_confirm[<?php echo $i; ?>]" <?php echo ($row['is_confirm'] ? 'checked' : ''); ?> value="1" id="confirm_<?php echo $i; ?>">

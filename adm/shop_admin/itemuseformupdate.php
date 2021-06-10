@@ -12,7 +12,10 @@ else
 check_admin_token();
 
 if ($w == "u")
-{
+{   
+    $is_reply_date = '';
+    if($is_reply_subject || $is_reply_content)
+      $is_reply_date = ",is_reply_date = IF(is_reply_date = '0000-00-00 00:00:00','".G5_TIME_YMDHIS."',is_reply_date) ";
     $sql = "update {$g5['g5_shop_item_use_table']}
                set is_subject = '$is_subject',
                    is_content = '$is_content',
@@ -20,6 +23,7 @@ if ($w == "u")
                    is_reply_subject = '$is_reply_subject',
                    is_reply_content = '$is_reply_content',
                    is_reply_name = '".$member['mb_nick']."'
+                   ".$is_reply_date."
              where is_id = '$is_id' ";
     sql_query($sql);
 
