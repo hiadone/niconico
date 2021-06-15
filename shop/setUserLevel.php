@@ -15,7 +15,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 	$sql2 = " SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '완료' AND od_time >= '". $lastDuration_s ."' AND od_time <= '". $lastDuration_e ."' AND mb_id = '". $row['mb_id'] ."' ";
 	$result2 = sql_query($sql2);
 	for ($j=0; $row2=sql_fetch_array($result2); $j++) {
-		$realPrice = $row2['od_receipt_price'] - $row2['od_receipt_point'] - $row2['od_send_cost'] - $row2['od_send_cost2'];
+		$realPrice = $row2['od_receipt_price']  - $row2['od_send_cost'] - $row2['od_send_cost2'];
 		$sum_payPrice += $realPrice;
 	}
 
@@ -34,7 +34,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 	$sql3 = " UPDATE {$g5['member_table']} SET mb_level = ". $toLevel ." WHERE mb_id = '". $row['mb_id'] ."'";
 	//$result3 = sql_query($sql3);
 	
-	if ($sum_payPrice > 500000) {
+	if ($sum_payPrice > 300000) {
 		echo $i . " : ". $row['mb_id'] ." => ". number_format($sum_payPrice) ." / ". $toLevel ."\n";
 	}
 }
