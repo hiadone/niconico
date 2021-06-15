@@ -174,7 +174,7 @@ function fitemuse_submit(f)
     const frm = new FormData(fitemuse);
     const w = '<?php echo $w; ?>';
     // sel_files.map((val,index) => frm.append("bf_file[(${index}+<?php echo $file['count'] ?>)]", val));
-    sel_files.map((val,index) => frm.append("bf_file[]", val));
+    sel_files.map(function(val,index){frm.append("bf_file[]", val)});
 
     frm.append("img_length", $('.review_img_thum').length);
     
@@ -266,21 +266,21 @@ function readInputFile(e){
 
                 // var html = `<a id=img_id_${index}><img src=${e.target.result} data-file=${f.name} /></a>`;
 
-                let html = `
-                            <div class="review_img_thum img_box">
-                                <img src=${e.target.result} data-file=${f.name}  alt="이미지" class="img" />
-                                <button
-                                  class="btn_del_img btn_linkstyle"
-                                  onClick="$(this).parent().remove();sel_files.splice(sel_files.findIndex(v => v.name == '${f.name}'),1);"
-                                >
-                                  <img
-                                    src="${G5_URL}/shop/img/icon-del.svg"
-                                    alt="이미지 파일명 빼기"
-                                    class="icon"
-                                  />
-                                </button>
-                            </div>
-                            `;
+                let html = '<div class="review_img_thum img_box">'+
+                            '<div class="review_img_thum img_box">'+
+                                '<img src="'+e.target.result+'" data-file="'+f.name+'"  alt="이미지" class="img" />'+
+                                '<button'+
+                                  ' class="btn_del_img btn_linkstyle"'+
+                                  ' onClick="$(this).parent().remove();sel_files.splice(sel_files.findIndex(function(v){ v.name == f.name}),1)"'+
+                                '>'+
+                                  '<img'+
+                                    ' src="'+G5_URL+'/shop/img/icon-del.svg"'+
+                                    ' alt="이미지 파일명 빼기"'+
+                                    ' class="icon"'+
+                                  '/>'+
+                                '</button>'+
+                            '</div>'
+                            ;
                 
                 $('#imagePreview').append(html);
                 index++;
