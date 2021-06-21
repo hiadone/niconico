@@ -1,5 +1,5 @@
 <?php
-include_once('/home/devniconicomall/www/common.php');
+include_once('../common.php');
 include_once(G5_PATH.'/adm/shop_admin/admin.shop.lib.php');
 include_once(G5_LIB_PATH.'/etc.lib.php');
 
@@ -9,20 +9,20 @@ include_once(G5_LIB_PATH.'/etc.lib.php');
 
 
 
-$receive_number = '';
-$receive_number = '01075060206';   
-$it_list='';
-if ($receive_number) {
+// $receive_number = '';
+// $receive_number = '01075060206';   
+// $it_list='';
+// if ($receive_number) {
 
-    $content = getTemplate('member_cs_2_');
-    $content = replaceStrPPurio($content);
+//     $content = getTemplate('member_cs_2_');
+//     $content = replaceStrPPurio($content);
 
-    $content = str_replace("#{mbr_name}", '보윤', $content);
+//     $content = str_replace("#{mbr_name}", '보윤', $content);
     
-    sendPPurio(str_replace("-", "", $receive_number), addslashes($content), 'member_cs_2_', 7,164);
-}
+//     sendPPurio(str_replace("-", "", $receive_number), addslashes($content), 'member_cs_2_', 7,164);
+// }
 
-exit;
+// exit;
 $sql = " SELECT * FROM {$g5['g5_shop_default_table']} ";
 $default = sql_fetch($sql);
 
