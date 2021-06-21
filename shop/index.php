@@ -213,20 +213,21 @@ window.criteo_q.push(
     height: 32px;
 }
 </style>
-
+<?php if($default['de_type3_list_use']) { ?>
 <div class="bgGray">
 	<div class="container">
-		<?php if($default['de_type2_list_use']) { ?>
+		
 		<!-- 베스트 시작 { -->
 		<section>
 			<header>
-				<h2>베스트</h2>
+				<h2>월간 베스트상품</h2>
 				<!-- <span>BEST ITEM</span> -->
 			</header>
 			<?php echo popular(); // 인기검색어, 테마의 스킨을 사용하려면 스킨을 theme/basic 과 같이 지정  ?>
 
 			<?php
 			$list = new item_list();
+			$list->set_list_skin(G5_SHOP_SKIN_PATH.'/main.type3.skin.php');
 			$list->set_type(3);
 			$list->set_view('it_id', false);
 			$list->set_view('it_name', true);
@@ -242,13 +243,13 @@ window.criteo_q.push(
 
 			echo $list->run();
 			?>
-			<a href="/shop/list.php?ca_id=20" target="_blank"><button class="more">상품 더보기 <strong>+</strong></button></a>
+			<a href="/shop/list.php?ca_id=20" ><button class="more">상품 더보기 <strong>+</strong></button></a>
 		</section>
 		<!-- } 인기상품 끝 -->
-		<?php } ?>
+		
 	</div>
 </div>
-
+<?php } ?>
 <!-- 에임드 시작 -->
 <div id="aed_main_p2"></div>
 <!-- 에임드 끝 -->
@@ -260,9 +261,12 @@ window.criteo_q.push(
 </div>
 <!-- 왼쪽슬롯을 하단으로 사용 끝 -->
 
+
+<!-- 왼쪽슬롯을 하단으로 사용 끝 -->
+
 <?php if($default['de_type4_list_use']) { ?>
 <style>
-	.sct_wrap { width:1200px; margin:0 auto; }
+        .sct_wrap { width:1200px; margin:0 auto; }
 </style>
 <!-- 추천상품 시작 { -->
 <section class="sct_wrap">
@@ -281,9 +285,9 @@ window.criteo_q.push(
     $list->set_view('sns', true);
     $list->set_view('star', true);
 
-	if ($is_admin) {
-		$list->set_isOnlyAdmin(10);
-	}
+        if ($is_admin) {
+                $list->set_isOnlyAdmin(10);
+        }
 
     echo $list->run();
     ?>
@@ -291,7 +295,138 @@ window.criteo_q.push(
 <!-- } 추천상품 끝 -->
 <?php } ?>
 
-<?php if($default['de_type3_list_use']) { ?>
+
+<section id="best_item_use" class="sct_wrap" >
+    <header>
+        <h2><a href="<?php echo shop_type_url('2'); ?>">베스트 리뷰</a></h2>
+    </header>
+
+    <?php
+    $list = new item_use_list();
+    
+    
+    $list->set_list_mod(4);
+	$list->set_list_row(3);
+	$list->set_img_size(282, 282);
+	$list->set_list_skin(G5_SHOP_SKIN_PATH.'/main_item_use.10.skin.php');
+
+    $list->set_view('is_subject', true);
+    $list->set_view('it_name', true);
+    $list->set_view('it_basic', false);
+    $list->set_view('it_cust_price', false);
+    $list->set_view('it_price', false);
+    $list->set_view('it_icon', false);
+    $list->set_view('sns', false);
+    $list->set_view('star', true);
+
+	if ($is_admin) {
+		$list->set_isOnlyAdmin(10);
+	}
+
+    echo $list->run();
+    ?>
+
+    <?php
+    	// $sql_common = " from `{$g5['g5_shop_item_use_table']}` a join `{$g5['g5_shop_item_table']}` b on (a.it_id=b.it_id) ";
+    	// $sql_search = " where a.is_confirm = '1' ";
+    	
+	    // $sst  = "a.is_id";
+	    // $sod = "desc";
+    	
+    	// $sql_order = " order by $sst $sod ";
+
+    	// $sql = " select count(*) as cnt
+    	//          $sql_common
+    	//          $sql_search
+    	//          $sql_order ";
+    	// $row = sql_fetch($sql);
+    	// $total_count = $row['cnt'];
+
+    	// $rows = $config['cf_page_rows'];
+    	// $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+    	// if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이지)
+    	// $from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+    	// $sql = " select *
+    	//           $sql_common
+    	//           $sql_search
+    	//           $sql_order
+    	//           limit $from_record, $rows ";
+    	// $result = sql_query($sql);
+
+    	// ob_start();
+    	// include(G5_PATH.'/skin/shop/basic/main.40.skin.php');
+    	// $content = ob_get_contents();
+     //    ob_end_clean();
+     //    echo $content;
+    ?>
+</section>
+<?php if($default['de_type2_list_use']) { ?>
+<style>
+	.sct_wrap { width:1200px; margin:0 auto; }
+
+	.sct_wrap button.more {
+		margin-top: 20px;
+		padding: 11px 40px 13px;
+		color: #fff;
+		font-size: 14.5px;
+		line-height: 1;
+		border: 0;
+		border-radius: 30px;
+		background: #636363;
+	}
+
+</style>
+<!-- 신상품 시작 { -->
+<section class="sct_wrap" style="margin-bottom: 50px;">
+    <header>
+        <h2><a href="<?php echo shop_type_url('2'); ?>">신상품</a></h2>
+    </header>
+    <?php
+    $list = new item_list();
+    $list->set_type(2);
+    $list->set_view('it_id', false);
+    $list->set_view('it_name', true);
+    $list->set_view('it_basic', true);
+    $list->set_view('it_cust_price', true);
+    $list->set_view('it_price', true);
+    $list->set_view('it_icon', true);
+    $list->set_view('sns', true);
+    $list->set_view('star', true);
+
+	if ($is_admin) {
+		$list->set_isOnlyAdmin(10);
+	}
+
+    echo $list->run();
+    ?>
+    <a href="/shop/list.php?ca_id=90" ><button class="more">상품 더보기 <strong>+</strong></button></a>
+</section>
+<!-- } 신상품 끝 -->
+<?php } ?>
+
+<style>
+	.sct_wrap { width:1200px; margin:0 auto; }
+</style>
+<!-- 신상품 시작 { -->
+
+<script>
+	//요즘 핫한 상품
+	$(function(){    
+		$('#best_item_use .smt_40').owlCarousel({
+			items : 4,
+			itemsCustom : false,
+			loop:true,
+			margin:24,
+			// autoplay:true,
+			autoplayTimeout:2000,
+			autoplayHoverPause:true,
+				//responsive:{
+				//	1000:{items:8}
+				//}
+		})
+	});
+</script>
 <style>
 	.category button.more {
 		margin-top: 20px;
@@ -336,7 +471,7 @@ window.criteo_q.push(
 
 			echo $list->run();
 		?>
-			<a href="/shop/list.php?ca_id=40" target="_blank"><button class="more">상품 더보기 <strong>+</strong></button></a>
+			<a href="/shop/list.php?ca_id=40" ><button class="more">상품 더보기 <strong>+</strong></button></a>
 	</div>
 	<div class="d02">
 		<?php
@@ -362,7 +497,7 @@ window.criteo_q.push(
 
 			echo $list->run();
 		?>
-			<a href="/shop/list.php?ca_id=50" target="_blank"><button class="more">상품 더보기 <strong>+</strong></button></a>
+			<a href="/shop/list.php?ca_id=50" ><button class="more">상품 더보기 <strong>+</strong></button></a>
 	</div>
 	<div class="d03">
 		<?php
@@ -388,7 +523,7 @@ window.criteo_q.push(
 
 			echo $list->run();
 		?>
-			<a href="/shop/list.php?ca_id=60" target="_blank"><button class="more">상품 더보기 <strong>+</strong></button></a>
+			<a href="/shop/list.php?ca_id=60" ><button class="more">상품 더보기 <strong>+</strong></button></a>
 	</div>
 	<div class="d04">
 		<?php
@@ -414,11 +549,11 @@ window.criteo_q.push(
 
 			echo $list->run();
 		?>
-		<a href="/shop/list.php?ca_id=70" target="_blank"><button class="more">상품 더보기 <strong>+</strong></button></a>
+		<a href="/shop/list.php?ca_id=70" ><button class="more">상품 더보기 <strong>+</strong></button></a>
 	</div>
 </section>
 <!-- } 카테고리별 상품 끝 -->
-<?php } ?>
+
 
 
 

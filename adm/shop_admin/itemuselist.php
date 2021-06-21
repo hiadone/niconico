@@ -120,6 +120,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <th scope="col"><?php echo subject_sort_link("is_score"); ?>평점</a></th>
         <th scope="col"><?php echo subject_sort_link("is_reply_date"); ?>답변등록일</a></th>
         <th scope="col"><?php echo subject_sort_link("is_confirm"); ?>확인</a></th>
+        <th scope="col"><?php echo subject_sort_link("is_best"); ?>베스트리뷰</a></th>
         <th scope="col">관리</th>
     </tr>
     </thead>
@@ -164,6 +165,10 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <td class="td_chk2">
             <label for="confirm_<?php echo $i; ?>" class="sound_only">확인</label>
             <input type="checkbox" name="is_confirm[<?php echo $i; ?>]" <?php echo ($row['is_confirm'] ? 'checked' : ''); ?> value="1" id="confirm_<?php echo $i; ?>">
+        </td>
+        <td class="td_chk2">
+            <label for="best_<?php echo $i; ?>" class="sound_only">베스트리뷰</label>
+            <input type="checkbox" name="is_best[<?php echo $i; ?>]" <?php echo ($row['is_best'] ? 'checked' : ''); ?> value="1" id="best_<?php echo $i; ?>">
         </td>
         <td class="td_mng td_mng_s">
             <a href="./itemuseform.php?w=u&amp;is_id=<?php echo $row['is_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo get_text($row['is_subject']); ?> </span>수정</a>

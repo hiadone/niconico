@@ -5,7 +5,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 0);
 
 // 장바구니 또는 위시리스트 ajax 스크립트
-add_javascript('<script src="'.G5_JS_URL.'/shop.list.action.js?v=1.1"></script>', 10);
+add_javascript('<script src="'.G5_JS_URL.'/shop.list.action.js"></script>', 10);
 ?>
 
 <!-- 상품진열 10 시작 { -->
@@ -47,9 +47,11 @@ foreach((array) $list as $row){
 	
     echo "<li class=\"sct_li ".implode(' ', $classes)."\" data-css=\"nocss\" style=\"height:auto\">\n";
 	echo "<div class=\"sct_img\">\n";
-
+    
     if ($this->href) {
         echo "<a href=\"{$item_link_href}\">\n";
+        if($this->view_best_num)
+            if($i < 6) echo "<span class=\"best_num\">".$i."</span>";
     }
 
     if ($this->view_it_img) {

@@ -25,12 +25,14 @@ for ($i=0; $i<count($_POST['chk']); $i++)
     $iis_id = isset($_POST['is_id'][$k]) ? (int) $_POST['is_id'][$k] : 0;
     $iis_score = isset($_POST['is_score'][$k]) ? (int) $_POST['is_score'][$k] : 0;
     $iis_confirm = isset($_POST['is_confirm'][$k]) ? (int) $_POST['is_confirm'][$k] : 0;
+    $iis_best = isset($_POST['is_best'][$k]) ? (int) $_POST['is_confirm'][$k] : 0;
 
     if ($_POST['act_button'] == "선택수정")
     {
         $sql = "update {$g5['g5_shop_item_use_table']}
                    set is_score   = '{$iis_score}',
-                       is_confirm = '{$iis_confirm}'
+                       is_confirm = '{$iis_confirm}',
+                       is_best = '{$iis_best}'
                  where is_id      = '{$iis_id}' ";
         sql_query($sql);
     }

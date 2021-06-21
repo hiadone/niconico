@@ -61,14 +61,14 @@
 
 
 
-/* 메인- 핫한 상품 */
-#idx_hit:after {
+/* 메인- 핫한 상품 , 베스트 리뷰 */
+#idx_hit:after ,#best_item_use:after {
 	display:block;
 	visibility:hidden;
 	clear:both;
 	content:"";
 }
-#idx_hit .owl-prev {
+#idx_hit .owl-prev ,#best_item_use .owl-prev {
 	position:absolute;
 	top:calc(50% - 60px);
 	left:-80px;
@@ -77,7 +77,7 @@
 	text-indent:-9999em;
 	background:url('../img/btn_idx_left.png') no-repeat;
 }
-#idx_hit .owl-next {
+#idx_hit .owl-next ,#best_item_use .owl-next  {
 	position:absolute;
 	top:calc(50% - 60px);
 	right:-80px;
@@ -89,16 +89,20 @@
 
 @media only screen and (max-width: 1199px) {
 	#idx_hit .owl-prev,
-	#idx_hit .owl-next {
+	#idx_hit .owl-next,
+	#best_item_use .owl-prev,
+	#best_item_use .owl-next {
 		top:-45px;
 		width:25px;
 		height:25px;
 		background-size:cover;
 	}
-	#idx_hit .owl-prev {
+	#idx_hit .owl-prev,
+	#best_item_use .owl-prev {
 		left:calc(100% - 58px);
 	}
-	#idx_hit .owl-next {
+	#idx_hit .owl-next,
+	#best_item_use .owl-next {
 		right:0;
 	}
 }

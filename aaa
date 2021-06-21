@@ -13,7 +13,7 @@
 	   from g5_shop_item b 
 	  where b.it_useEvent = 1 
 
-time : 1620112321
+time : 1624237201
 1597830360
 MD40950026 Start!
 MD40950026 End!

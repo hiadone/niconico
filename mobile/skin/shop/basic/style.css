@@ -861,3 +861,21 @@ span.repur { color:#fff; background-color:#ed7d31; display:inline-block; font-si
     width: 100%;
     font-size: 12px;
 }
+
+.sct_li .best_num , .sct_10 .best_num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255,77,126,.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

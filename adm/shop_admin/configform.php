@@ -341,7 +341,7 @@ if( function_exists('pg_setting_check') ){
             </td>
         </tr>
         <tr>
-            <th scope="row">인기상품출력</th>
+            <th scope="row">신상품출력</th>
             <td>
                 <label for="de_type2_list_use">출력</label>
                 <input type="checkbox" name="de_type2_list_use" value="1" id="de_type2_list_use" <?php echo $default['de_type2_list_use']?"checked":""; ?>>
@@ -360,7 +360,7 @@ if( function_exists('pg_setting_check') ){
             </td>
         </tr>
         <tr>
-            <th scope="row">카테고리상품출력</th>
+            <th scope="row">베스트 상품출력</th>
             <td>
                 <label for="de_type3_list_use">출력</label>
                 <input type="checkbox" name="de_type3_list_use" value="1" id="de_type3_list_use" <?php echo $default['de_type3_list_use']?"checked":""; ?>>
@@ -461,7 +461,7 @@ if( function_exists('pg_setting_check') ){
             </td>
         </tr>
         <tr>
-            <th scope="row">인기상품출력</th>
+            <th scope="row">신상품출력</th>
             <td>
                 <label for="de_mobile_type2_list_use">출력</label> <input type="checkbox" name="de_mobile_type2_list_use" value="1" id="de_mobile_type2_list_use" <?php echo $default['de_mobile_type2_list_use']?"checked":""; ?>>
                 <label for="de_mobile_type2_list_skin">스킨 </label>
@@ -479,7 +479,7 @@ if( function_exists('pg_setting_check') ){
             </td>
         </tr>
         <tr>
-            <th scope="row">카테고리상품출력</th>
+            <th scope="row">베스트 상품출력</th>
             <td>
                 <label for="de_mobile_type3_list_use">출력</label>
                 <input type="checkbox" name="de_mobile_type3_list_use" value="1" id="de_mobile_type3_list_use" <?php echo $default['de_mobile_type3_list_use']?"checked":""; ?>>

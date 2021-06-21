@@ -20,6 +20,7 @@ if ($w == "u")
                set is_subject = '$is_subject',
                    is_content = '$is_content',
                    is_confirm = '$is_confirm',
+                   is_best = '$is_best',
                    is_reply_subject = '$is_reply_subject',
                    is_reply_content = '$is_reply_content',
                    is_reply_name = '".$member['mb_nick']."'

@@ -6,11 +6,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 
 $mshop_categories = get_shop_category_array(true);
 ?>
-<script>
-jQuery(function ($){
-	$('#gnb_1dul').append("<li class=gnb_1dli style=z-index:989><a href=/bbs/board.php?bo_table=notice class=gnb_1da>공지사항</a></li>");
-});
-</script>
+
 <script>
 	$(window).scroll(function() {
 		var distanceY = window.pageYOffset || document.documentElement.scrollTop,
@@ -68,6 +64,7 @@ transform:  translateX(-50%) !important;
             ?>
         </li>
         <?php $i++; }   //end for ?>
+        <li class=gnb_1dli style=z-index:989><a href=/bbs/board.php?bo_table=notice class=gnb_1da>공지사항</a></li>
     </ul>
 </nav>
 <!-- } 쇼핑몰 카테고리 끝 -->

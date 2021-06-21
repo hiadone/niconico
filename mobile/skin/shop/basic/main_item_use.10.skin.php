@@ -48,12 +48,24 @@ foreach((array) $list as $row){
     echo "<div class=\"li_wr\">\n";
 
     if ($this->href) {
-        echo "<div class=\"sct_img\"><a href=\"{$item_link_href}\">\n";
+        echo "<div class=\"sct_img\"><a href=\"{$item_link_href}&tab_tit=sit_use&is_id=".$row['is_id']."#sit_use\" >\n";
     }
 
-    if ($this->view_it_img) {
-        echo get_it_image($row['it_id'], $this->img_width, $this->img_height, '', '', stripslashes($row['it_name']))."\n";
-    }
+    // if($row['is_type'] === 'photo'){
+
+    //     $thumb = get_list_thumbnail('review',$row['is_id'], $this->img_width, $this->img_height, false, false);
+
+    //     if($thumb['src']) {
+    //         echo  '<img  src="'.$thumb['src'].'" alt="'.$thumb['alt'].'" >';
+    //     } else {
+    //         echo get_it_image($row['it_id'], $this->img_width, $this->img_height, '', '', stripslashes($row['it_name']))."\n";
+    //     }
+    // } else {
+        if ($this->view_it_img) {
+            echo get_it_image($row['it_id'], $this->img_width, $this->img_height, '', '', stripslashes($row['it_name']))."\n";
+        }           
+    // }
+    
 
     if ($this->href) {
         echo "</a></div>\n";
@@ -61,9 +73,15 @@ foreach((array) $list as $row){
 
     echo "<div class=\"sct_txt_wr\">\n";
 
-	// 사용후기 평점표시
-	if ($this->view_star && $star_score) {
-        echo "<div class=\"sct_star\"><img src=\"".G5_SHOP_URL."/img/s_star".$star_score.".png\" alt=\"별점 ".$star_score."점\" class=\"sit_star\"></div>\n";
+    // 사용후기 평점표시
+    if ($this->view_star && $star_score) {
+
+        echo "<div class=\"sct_star\">\n";
+
+        if ($this->view_it_name) {
+            echo "<div class=\"sct_txt\" style=\"font-size: 1.083em;\">".stripslashes($row['it_name'])."</div>\n";
+        }
+        echo "<img src=\"".G5_SHOP_URL."/img/s_star".$star_score.".png\" alt=\"별점 ".$star_score."점\" class=\"sit_star\" style=\"width:25%\"></div>\n";
     }
 
     if ($this->view_it_id) {
@@ -74,9 +92,20 @@ foreach((array) $list as $row){
         echo "<div class=\"sct_txt\"><a href=\"{$this->href}{$row['it_id']}\" class=\"sct_a\">\n";
     }
 
-    if ($this->view_it_name) {
-        echo stripslashes($row['it_name'])."\n";
+    
+    
+
+    if ($this->view_is_subject) {        
+        echo "<div class=\"\" style='text-align:left;
+    margin: 0 0 10px;
+    padding: 5px 0 10px;
+    line-height: 1.3em;
+    border-bottom: 1px solid #e3e6e9;'>".stripslashes($row['is_subject'])."</div>\n";
+        echo "<div style='text-align:left;'>".conv_subject(strip_tags($row['is_content']),24,'...')."</div>\n";
+        echo "<div style='text-align:right;'>".replaceNameFunc(get_text($row['is_name']))."</div>\n";
     }
+
+
 
     if ($this->href) {
         echo "</a></div>\n";
@@ -84,10 +113,10 @@ foreach((array) $list as $row){
 
      if ($this->view_it_cust_price || $this->view_it_price) {
         echo "<div class=\"sct_cost\">\n";
-		if ($this->view_it_cust_price && $row['it_cust_price']) {
+        if ($this->view_it_cust_price && $row['it_cust_price']) {
                 echo "<span class=\"sct_dict\" style=\"display:inline-block;text-decoration: line-through;color:#aaa;font-weight:400;\">".display_price($row['it_cust_price'])."</span>\n";
             }
-		 if ($this->view_it_price) {
+         if ($this->view_it_price) {
             echo display_price(get_price($row), $row['it_tel_inq'])."\n";
         }
 
@@ -118,17 +147,26 @@ foreach((array) $list as $row){
 if ($i > 0) echo "</ul>\n";
 
 if($i == 0) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>\n";
+
+
+function replaceNameFunc($str) {
+    $name_x ='*';
+    $name_a = mb_substr($str,0,1,"UTF-8");
+    $name_b = mb_substr($str,2,10,"UTF-8");
+    $str = $name_a.$name_x.$name_b;
+    return $str;
+}
 ?>
 <!-- } 상품진열 30 끝 -->
 </div>
 
 <script>
 $('.sct_30').bxSlider({
-    slideWidth: 200,
-    minSlides: 2,
-    maxSlides: 8,
-    slideMargin: 5,
-    controls: false
+    minSlides: 1,
+    maxSlides: 1,
+    
+    controls: false,
+    infiniteLoop: true
 
 });
 </script>

@@ -228,7 +228,7 @@ function replaceNameFunc($str) {
             
             <?php } ?>    
             </div>    
-            <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con" >
+            <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con"  <?php if($_GET['is_id'] == $row['is_id']) echo 'style="display:block"' ?>>
                 <div class="sit_use_p">
 
                     <?php

@@ -1731,7 +1731,7 @@ background:url('img/select_arrow.png') no-repeat 96% 50%/* 화살표 아이콘 �
 .sit_use_dl .sit_use_tit {font-weight:bold;font-size:1.167em;color:#000 !important}
 
 .sit_use_con {display:none;margin-right:110px;margin-bottom:10px}
-.sit_use_p {margin:10px 0;padding:10px 0}
+.sit_use_p {margin:10px 0;padding:10px 0;background:#f2f2f2}
 .sit_use_cmd {}
 
 .sit_use_reply {position:relative;border-top:1px dotted #bbb;margin:10px 0 0;padding:10px 0 0 40px}
@@ -2057,4 +2057,22 @@ span.repur { color:#fff; background-color:#ed7d31; display:inline-block; font-si
 .img_box .img {
     width: 100%;
     font-size: 12px;
+}
+
+.smt_10 .best_num , .sct_10 .best_num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255,77,126,.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

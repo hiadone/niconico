@@ -24,3 +24,5 @@ composer.lock
 /tests/tests/
 /tests/results/
 
+## Inicis log files
+/shop/inicis/log/*

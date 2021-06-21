@@ -8,18 +8,18 @@ include_once(G5_LIB_PATH.'/etc.lib.php');
 
 
 
+
 $receive_number = '';
 $receive_number = '01075060206';   
-
+$it_list='';
 if ($receive_number) {
 
-    $content = getTemplate('ship_done_6');
+    $content = getTemplate('member_cs_2_');
     $content = replaceStrPPurio($content);
 
-    $content = str_replace("#{order_name}", $row['od_name'], $content);
-
-    sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_6', 6);
-    // sendPPurio(str_replace("-", "", $receive_number), $content, 'ship_done_2', 4);
+    $content = str_replace("#{mbr_name}", '보윤', $content);
+    
+    sendPPurio(str_replace("-", "", $receive_number), addslashes($content), 'member_cs_2_', 7,164);
 }
 
 exit;
@@ -59,7 +59,7 @@ $default = sql_fetch($sql);
                 $receive_number = '';
                 $receive_number = preg_replace("/[^0-9]/", "", $row['od_hp']);   
 
-                $sql = " select * from {$g5['g5_shop_cart_table']} where od_id = '$row['od_id']' ";
+                $sql = " select * from {$g5['g5_shop_cart_table']} where od_id = '".$row['od_id']."' ";
                 $res2 = sql_query($sql);
 
                 for ($i=0; $row2=sql_fetch_array($res2); $i++)

@@ -13,6 +13,8 @@ if (G5_IS_MOBILE) {
 
 $sql = " select * from {$g5['g5_shop_category_table']} where ca_id = '$ca_id' and ca_use = '1'  ";
 $ca = sql_fetch($sql);
+
+
 if (!$ca['ca_id'])
     alert('등록된 분류가 없습니다.');
 
@@ -135,9 +137,20 @@ document.getElementsByTagName('head')[0].appendChild(meta);
         $from_record = ($page - 1) * $items;
 
         $list = new item_list($skin_file, $ca['ca_list_mod'], $ca['ca_list_row'], $ca['ca_img_width'], $ca['ca_img_height']);
-        $list->set_category($ca['ca_id'], 1);
-        $list->set_category($ca['ca_id'], 2);
-        $list->set_category($ca['ca_id'], 3);
+
+        if($ca_id == 20){
+            $list->set_type(3);
+            $list->set_view('best_num', true);
+        } elseif($ca_id == 90) {
+            $list->set_type(2);
+        } else {
+            $list->set_category($ca['ca_id'], 1);
+            $list->set_category($ca['ca_id'], 2);
+            $list->set_category($ca['ca_id'], 3);    
+        }
+        
+
+        
         $list->set_is_page(true);
         $list->set_order_by($order_by);
         $list->set_from_record($from_record);
@@ -149,6 +162,7 @@ document.getElementsByTagName('head')[0].appendChild(meta);
         $list->set_view('it_price', true);
         $list->set_view('it_icon', true);
         $list->set_view('sns', true);
+
 
 		if ($is_admin) {
 			$list->set_isOnlyAdmin(10);

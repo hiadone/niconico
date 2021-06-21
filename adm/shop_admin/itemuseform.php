@@ -32,6 +32,9 @@ $name = get_sideview($is['mb_id'], get_text($is['is_name']), $is['mb_email'], $i
 $is_confirm_yes  =  $is['is_confirm'] ? 'checked="checked"' : '';
 $is_confirm_no   = !$is['is_confirm'] ? 'checked="checked"' : '';
 
+$is_best_yes  =  $is['is_best'] ? 'checked="checked"' : '';
+$is_best_no   = !$is['is_best'] ? 'checked="checked"' : '';
+
 $g5['title'] = '사용후기';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
@@ -95,6 +98,15 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
             <label for="is_confirm_yes">예</label>
             <input type="radio" name="is_confirm" value="0" id="is_confirm_no" <?php echo $is_confirm_no; ?>>
             <label for="is_confirm_no">아니오</label>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">베스트리뷰</th>
+        <td>
+            <input type="radio" name="is_best" value="1" id="is_best_yes" <?php echo $is_best_yes; ?>>
+            <label for="is_best_yes">예</label>
+            <input type="radio" name="is_best" value="0" id="is_best_no" <?php echo $is_best_no; ?>>
+            <label for="is_best_no">아니오</label>
         </td>
     </tr>
     </tbody>

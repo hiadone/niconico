@@ -128,9 +128,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <tr>
         <th scope="col"><?php echo subject_sort_link("it_id", $qstr, 1); ?>상품코드</a></th>
         <th scope="col"><?php echo subject_sort_link("it_name"); ?>상품명</a></th>
-        <th scope="col"><?php echo subject_sort_link("it_type1", $qstr, 1); ?>요즘 핫한<br>상품</a></th>
-        <th scope="col"><?php echo subject_sort_link("it_type2", $qstr, 1); ?>인기<br>상품</a></th>
-        <th scope="col"><?php echo subject_sort_link("it_type3", $qstr, 1); ?>카테고리<br>상품</a></th>
+        <th scope="col"><?php echo subject_sort_link("it_type1", $qstr, 1); ?>히트<br>상품</a></th>
+        <th scope="col"><?php echo subject_sort_link("it_type2", $qstr, 1); ?>신상품<br>상품</a></th>
+        <th scope="col"><?php echo subject_sort_link("it_type3", $qstr, 1); ?>베스트<br>상품</a></th>
         <th scope="col"><?php echo subject_sort_link("it_type4", $qstr, 1); ?>추천<br>상품</a></th>
         <th scope="col"><?php echo subject_sort_link("it_type5", $qstr, 1); ?>할인<br>상품</a></th>
         <th scope="col">관리</th>
@@ -153,11 +153,11 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
             <input type="checkbox" name="it_type1[<?php echo $i; ?>]" value="1" id="type1_<?php echo $i; ?>" <?php echo ($row['it_type1'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">
-            <label for="type2_<?php echo $i; ?>" class="sound_only">추천상품</label>
+            <label for="type2_<?php echo $i; ?>" class="sound_only">신상품</label>
             <input type="checkbox" name="it_type2[<?php echo $i; ?>]" value="1" id="type2_<?php echo $i; ?>" <?php echo ($row['it_type2'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">
-            <label for="type3_<?php echo $i; ?>" class="sound_only">카테고리상품</label>
+            <label for="type3_<?php echo $i; ?>" class="sound_only">베스트상품</label>
             <input type="checkbox" name="it_type3[<?php echo $i; ?>]" value="1" id="type3_<?php echo $i; ?>" <?php echo ($row['it_type3'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">

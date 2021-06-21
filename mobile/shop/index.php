@@ -151,16 +151,17 @@ document.getElementsByTagName('head')[0].appendChild(meta);
 		</div>
 	</div> -->
 
-    <?php if($default['de_mobile_type2_list_use']) { ?>
+    <?php if($default['de_mobile_type3_list_use']) { ?>
     <div class="sct_wrap">
         <header>
-			<h2>베스트</h2>
+			<h2>월간 베스트상품</h2>
 			<!-- <span>BEST ITEM</span> -->
 		</header>
 
 		<?php echo popular(); // 인기검색어, 테마의 스킨을 사용하려면 스킨을 theme/basic 과 같이 지정  ?>
         <?php
         $list = new item_list();
+        $list->set_list_skin(G5_MSHOP_SKIN_PATH.'/main.type3.skin.php');
         $list->set_mobile(true);
         $list->set_type(3);
         $list->set_view('it_id', false);
@@ -177,25 +178,119 @@ document.getElementsByTagName('head')[0].appendChild(meta);
 
         echo $list->run();
         ?>
+        <a href="/shop/list.php?ca_id=20" ><button class="more">상품 더보기 <strong>+</strong></button></a>
     </div>
     <?php } ?>
 
+<section id="best_item_use" class="sct_wrap" >
+    <header>
+        <h2><a href="<?php echo shop_type_url('2'); ?>">베스트 리뷰</a></h2>
+    </header>
+
+    <?php
+    $list = new item_use_list();
+    
+    
+    $list->set_list_mod(5);
+    $list->set_list_row(2);
+    $list->set_img_size(300,300);
+    $list->set_list_skin(G5_MSHOP_SKIN_PATH.'/main_item_use.10.skin.php');
+
+    $list->set_view('is_subject', true);
+    $list->set_view('it_name', true);
+    $list->set_view('it_basic', false);
+    $list->set_view('it_cust_price', false);
+    $list->set_view('it_price', false);
+    $list->set_view('it_icon', false);
+    $list->set_view('sns', false);
+    $list->set_view('star', true);
+
+    if ($is_admin) {
+        $list->set_isOnlyAdmin(10);
+    }
+
+    echo $list->run();
+    ?>
+
+    <?php
+        // $sql_common = " from `{$g5['g5_shop_item_use_table']}` a join `{$g5['g5_shop_item_table']}` b on (a.it_id=b.it_id) ";
+        // $sql_search = " where a.is_confirm = '1' ";
+        
+        // $sst  = "a.is_id";
+        // $sod = "desc";
+        
+        // $sql_order = " order by $sst $sod ";
+
+        // $sql = " select count(*) as cnt
+        //          $sql_common
+        //          $sql_search
+        //          $sql_order ";
+        // $row = sql_fetch($sql);
+        // $total_count = $row['cnt'];
+
+        // $rows = $config['cf_page_rows'];
+        // $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+        // if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이지)
+        // $from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+        // $sql = " select *
+        //           $sql_common
+        //           $sql_search
+        //           $sql_order
+        //           limit $from_record, $rows ";
+        // $result = sql_query($sql);
+
+        // ob_start();
+        // include(G5_PATH.'/skin/shop/basic/main.40.skin.php');
+        // $content = ob_get_contents();
+     //    ob_end_clean();
+     //    echo $content;
+    ?>
+</section>
 <!-- 에임드 시작 -->
 <div id="aed_main_m2"></div>
 <!-- 에임드 끝 -->
 
 	<?php  echo display_banner('하단', 'boxbanner_foot.skin.php'); ?>
 
-	<?php if($default['de_mobile_type2_list_use']) { ?>
+
+        <?php if($default['de_mobile_type4_list_use']) { ?>
     <div class="sct_wrap">
-		<header>
-			<h2>추천상품</h2>
-		</header>
+                <header>
+                        <h2>추천상품</h2>
+                </header>
        <!--  <h2><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=2">추천상품</a></h2> -->
         <?php
         $list = new item_list();
         $list->set_mobile(true);
         $list->set_type(4);
+        $list->set_view('it_id', false);
+        $list->set_view('it_name', true);
+        $list->set_view('it_cust_price', true);
+        $list->set_view('it_price', true);
+        $list->set_view('it_icon', true);
+                $list->set_view('star', true);
+       // $list->set_view('sns', true);
+
+                if ($is_admin) {
+                        $list->set_isOnlyAdmin(1);
+                }
+                echo $list->run();
+        ?>
+    </div>
+<?php } ?>
+
+
+	<?php if($default['de_mobile_type2_list_use']) { ?>
+    <div class="sct_wrap">
+		<header>
+			<h2>신상품</h2>
+		</header>
+       <!--  <h2><a href="<?php echo G5_SHOP_URL; ?>/listtype.php?type=2">추천상품</a></h2> -->
+        <?php
+        $list = new item_list();
+        $list->set_mobile(true);
+        $list->set_type(2);
         $list->set_view('it_id', false);
         $list->set_view('it_name', true);
         $list->set_view('it_cust_price', true);
@@ -209,6 +304,7 @@ document.getElementsByTagName('head')[0].appendChild(meta);
 		}
 		echo $list->run();
         ?>
+        <a href="/shop/list.php?ca_id=90" ><button class="more">상품 더보기 <strong>+</strong></button></a>
     </div>
 <?php } ?>
 
