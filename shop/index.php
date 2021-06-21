@@ -378,30 +378,38 @@ window.criteo_q.push(
 
 </style>
 <!-- 신상품 시작 { -->
-<section class="sct_wrap" style="margin-bottom: 50px;">
-    <header>
-        <h2><a href="<?php echo shop_type_url('2'); ?>">신상품</a></h2>
-    </header>
-    <?php
-    $list = new item_list();
-    $list->set_type(2);
-    $list->set_view('it_id', false);
-    $list->set_view('it_name', true);
-    $list->set_view('it_basic', true);
-    $list->set_view('it_cust_price', true);
-    $list->set_view('it_price', true);
-    $list->set_view('it_icon', true);
-    $list->set_view('sns', true);
-    $list->set_view('star', true);
 
-	if ($is_admin) {
-		$list->set_isOnlyAdmin(10);
-	}
+<div class="bgGray">
+    <div class="container">
+        
+        <!-- 베스트 시작 { -->
+        <section>
 
-    echo $list->run();
-    ?>
-    <a href="/shop/list.php?ca_id=90" ><button class="more">상품 더보기 <strong>+</strong></button></a>
-</section>
+            <header>
+                <h2><a href="<?php echo shop_type_url('2'); ?>">신상품</a></h2>
+            </header>
+            <?php
+            $list = new item_list();
+            $list->set_type(2);
+            $list->set_view('it_id', false);
+            $list->set_view('it_name', true);
+            $list->set_view('it_basic', true);
+            $list->set_view('it_cust_price', true);
+            $list->set_view('it_price', true);
+            $list->set_view('it_icon', true);
+            $list->set_view('sns', true);
+            $list->set_view('star', true);
+
+        	if ($is_admin) {
+        		$list->set_isOnlyAdmin(10);
+        	}
+
+            echo $list->run();
+            ?>
+            <a href="/shop/list.php?ca_id=90" ><button class="more">상품 더보기 <strong>+</strong></button></a>
+        </section>
+    </div>
+</div>
 <!-- } 신상품 끝 -->
 <?php } ?>
 
