@@ -129,7 +129,7 @@ if( $PG_IP == "203.238.37.3" || $PG_IP == "203.238.37.15" || $PG_IP == "203.238.
                     $content = str_replace("#{orderNo}", $od_id, $content);
                     $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
 
-                    sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 2);
+                    sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 8);
                 }
             }
         }

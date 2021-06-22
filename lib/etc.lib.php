@@ -135,6 +135,15 @@ function sendPPurio($phoneNumber, $content, $type, $buttonType = 1,$ext_val = ''
 
         $button = array(array("name"=>"쇼핑몰 바로가기","type"=>"WL","url_mobile"=>"https://niconicomall.com/bbs/qaview.php?qa_id=".$ext_val,"url_pc"=>"https://niconicomall.com/bbs/qaview.php?qa_id=".$ext_val));
     } 
+    // 채널추가와 주문내역 조회하기가 있는 경우
+    elseif ($buttonType == 8) { 
+        $query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,
+        MSG_BODY, TEMPLATE_CODE, SENDER_KEY, NATION_CODE, ATTACHED_FILE)
+        VALUES (6, '". $cmid ."', NOW(), NOW(), '". $phoneNumber ."', '07042836537',
+        '". $content ."', '". $type ."', 'ca4ce95f12699f2ad036fa494e8a2afea58a6e95', '82', 'button8.json')";
+
+        $button = array(array("name"=>"채널추가","type"=>"AC"),array("name"=>"주문내역 조회하기","type"=>"WL","url_mobile"=>"https://bit.ly/3gr43Tg","url_pc"=>"https://bit.ly/3gr43Tg"));
+    } 
 	// 쇼핑몰 놀러가기만 있는 경우
 	else { 
 		$query = "INSERT INTO BIZ_MSG (MSG_TYPE, CMID, REQUEST_TIME, SEND_TIME, DEST_PHONE, SEND_PHONE,

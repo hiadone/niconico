@@ -984,7 +984,7 @@ if ($od_hp && $od_status == "입금") {
 	$content = str_replace("#{orderNo}", $od_id, $content);
 	$content = str_replace("#{settlePrice}", number_format($od_receipt_price), $content);
 
-	sendPPurio(str_replace("-", "", $od_hp), $content, 'pay_done_over_2', 2);
+	sendPPurio(str_replace("-", "", $od_hp), $content, 'pay_done_over_2', 8);
 }
 
 // orderview 에서 사용하기 위해 session에 넣고

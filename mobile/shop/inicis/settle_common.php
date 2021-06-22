@@ -332,7 +332,7 @@ if($PGIP == "211.219.96.165" || $PGIP == "118.129.210.25" || $PGIP == "183.109.7
                     $content = str_replace("#{orderNo}", $od_id, $content);
                     $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
 
-                    sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 2);
+                    sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 8);
                 }
             }
         }

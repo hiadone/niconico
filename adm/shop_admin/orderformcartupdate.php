@@ -454,14 +454,14 @@ if ($_POST['ct_status'] == "완료") {
 	}
 } elseif ($_POST['ct_status'] == "취소") {
 	if ($od['od_hp']) {
-		$content = getTemplate('refund_done_3');
+		$content = getTemplate('refund_done_5');
 		$content = replaceStrPPurio($content);
 
 		$content = str_replace("#{order_name}", $od['od_name'], $content);
 		$content = str_replace("#{orderNo}", $od_id, $content);
 		$content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
 
-		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'refund_done_3', 5);
+		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'refund_done_5', 5);
 	}
 } elseif ($_POST['ct_status'] == "입금") {
 	if ($od['od_hp']) {
@@ -472,7 +472,7 @@ if ($_POST['ct_status'] == "완료") {
 		$content = str_replace("#{orderNo}", $od_id, $content);
 		$content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
 
-		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 2);
+		sendPPurio(str_replace("-", "", $od['od_hp']), $content, 'pay_done_over_2', 8);
 	}
 }
 

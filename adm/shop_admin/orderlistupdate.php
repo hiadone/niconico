@@ -68,7 +68,7 @@ for ($i=0; $i<$count_post_chk; $i++)
                 $content = str_replace("#{orderNo}", $od_id, $content);
                 $content = str_replace("#{settlePrice}", number_format($od['od_receipt_price']), $content);
 
-                sendPPurio(str_replace("-", "", $receive_number), $content, 'pay_done_over_2', 2);
+                sendPPurio(str_replace("-", "", $receive_number), $content, 'pay_done_over_2', 8);
             }
             
             // SMS
