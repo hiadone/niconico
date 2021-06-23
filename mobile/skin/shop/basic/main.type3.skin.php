@@ -46,7 +46,7 @@ foreach((array) $list as $row){
 
     if ($this->href) {
         echo "<div class=\"sct_img\"><a href=\"{$item_link_href}\">\n";
-        if($i < 5) echo "<span class=\"best_num\">".($i+1)."</span>";
+        // if($i < 5) echo "<span class=\"best_num\">".($i+1)."</span>";
     }
 
     if ($this->view_it_img) {

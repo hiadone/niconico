@@ -41,7 +41,7 @@ foreach((array) $list as $row){
 
     if ($this->href) {
         echo "<a href=\"{$item_link_href}\" target=\"_blank\">\n";
-        if($i < 6) echo "<span class=\"best_num\">".$i."</span>";
+        // if($i < 6) echo "<span class=\"best_num\">".$i."</span>";
     }
 
     if ($this->view_it_img) {

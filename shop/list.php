@@ -140,7 +140,7 @@ document.getElementsByTagName('head')[0].appendChild(meta);
 
         if($ca_id == 20){
             $list->set_type(3);
-            $list->set_view('best_num', true);
+            $list->set_view('best_num', false);
         } elseif($ca_id == 90) {
             $list->set_type(2);
         } else {
