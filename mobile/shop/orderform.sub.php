@@ -345,12 +345,12 @@ if($is_kakaopay_use) {
                     <strong>주소</strong>
                     
                     <span class="add_num"><label for="od_zip" class="sound_only">우편번호<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" name="od_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="od_zip" required class="frm_input required" size="5" maxlength="6">
+                    <input type="number" name="od_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="od_zip" required class="frm_input required" size="5" maxlength="6" style="width:100px !important;" placeholder="우편번호">
                     <button type="button" class="btn_frmline btn_addsch" onclick="win_zip('forderform', 'od_zip', 'od_addr1', 'od_addr2', 'od_addr3', 'od_addr_jibeon', 'od_addr_eng');">주소검색</button></span>
                     <label for="od_addr1" class="sound_only">기본주소<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" name="od_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="od_addr1" required class="frm_input frm_address required">
+                    <input type="text" name="od_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="od_addr1" required class="frm_input frm_address required" placeholder="기본주소">
                     <label for="od_addr2" class="sound_only">상세주소</label>
-                    <input type="text" name="od_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="od_addr2" class="frm_input frm_address">
+                    <input type="text" name="od_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="od_addr2" class="frm_input frm_address" placeholder="상세주소">
                     <label for="od_addr3" class="sound_only">참고항목</label>
                     <input type="text" name="od_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="od_addr3" class="frm_input frm_address" readonly="readonly">
                     <input type="hidden" name="od_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>"><br>
@@ -482,12 +482,12 @@ if($is_kakaopay_use) {
                 <li>
                     <strong>주소</strong>
                     <label for="od_b_zip" class="sound_only">우편번호<strong class="sound_only"> 필수</strong></label>
-                    <span class="add_num"><input type="text" name="od_b_zip" id="od_b_zip" required class="frm_input required" size="5" maxlength="6">
+                    <span class="add_num"><input type="number" name="od_b_zip" id="od_b_zip" required class="frm_input required" size="5" maxlength="6" style="width:100px !important;" placeholder="우편번호">
                     <button type="button" class="btn_frmline  btn_addsch" onclick="win_zip('forderform', 'od_b_zip', 'od_b_addr1', 'od_b_addr2', 'od_b_addr3', 'od_b_addr_jibeon', 'od_b_addr_eng');">주소 검색</button></span>
                     <label for="od_b_addr1" class="sound_only">기본주소<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" name="od_b_addr1" id="od_b_addr1" required class="frm_input frm_address required">
+                    <input type="text" name="od_b_addr1" id="od_b_addr1" required class="frm_input frm_address required" placeholder="기본주소">
                     <label for="od_b_addr2" class="sound_only">상세주소</label>
-                    <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input frm_address">
+                    <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input frm_address" placeholder="상세주소">
                     <label for="od_b_addr3" class="sound_only">참고항목</label>
                     <input type="text" name="od_b_addr3" id="od_b_addr3" class="frm_input frm_address" readonly="readonly">
                     <input type="hidden" name="od_b_addr_jibeon" value="">
